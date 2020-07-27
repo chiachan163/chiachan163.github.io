@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>tp-micro使用说明 | 未来可期</title>
+  <meta name="keywords" content=" tp-micro , golang ">
+  <meta name="description" content="tp-micro使用说明 | 未来可期">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="golang开发者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="个人介绍">
+<meta property="og:url" content="https://chiachan163.github.io/about/index.html">
+<meta property="og:site_name" content="未来可期">
+<meta property="og:description" content="golang开发者">
+<meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-04-16T16:02:46.000Z">
+<meta property="article:modified_time" content="2020-07-27T13:21:38.684Z">
+<meta property="article:author" content="chiachan163">
+<meta property="article:tag" content="chiachan">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.png" />
+</a>
+<div class="author">
+    <span>chiachan163</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+        <a title="github" href="https://github.com/chiachan163" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:chiachan@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=350266154&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+<a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(3)</small></div></li>
+    
+        
+            
+            <li><div data-rel="golang">golang<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/chiachan163">github</a>
+    
+    </div>
+    <div><a class="about  " target="_blank" href="/about">About</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="3">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>golang</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tp-micro</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All golang "
+           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
+           data-tag="tp-micro,golang"
+           data-author="" >
+            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
+            <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
+        </a>
+        
+        <a  class="All golang "
+           href="/2019/12/21/tp-micro/tp-micro%20mysql/"
+           data-tag="tp-micro,golang"
+           data-author="" >
+            <span class="post-title" title="tp-micro mysql">tp-micro mysql</span>
+            <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
+        </a>
+        
+        <a  class="All golang "
+           href="/2019/12/21/tp-micro/tp-micro%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
+           data-tag="tp-micro,golang"
+           data-author="" >
+            <span class="post-title" title="tp-micro使用说明">tp-micro使用说明</span>
+            <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-tp-micro/tp-micro使用说明" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">tp-micro使用说明</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="golang">golang</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">tp-micro</a>
+            
+            <a class="color2">golang</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-06-10 22:56:56'>2019-12-21 15:13</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#tp-micro使用手册"><span class="toc-text">tp-micro使用手册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、目录结构"><span class="toc-text">一、目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、模板文件结构说明"><span class="toc-text">二、模板文件结构说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#type-API-PULL-interface"><span class="toc-text">type API_PULL interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type-API-PUSH-interface"><span class="toc-text">type API_PUSH interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type-MYSQL-MODEL-struct"><span class="toc-text">type MYSQL_MODEL struct</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type-MONGO-MODEL-struct"><span class="toc-text">type MONGO_MODEL struct</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、接口管理"><span class="toc-text">三、接口管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pull-handler-gen-go"><span class="toc-text">pull_handler.gen.go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#push-handler-gen-go"><span class="toc-text">push_handler.gen.go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、业务层"><span class="toc-text">四、业务层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tmp-code-gen-go"><span class="toc-text">tmp_code.gen.go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、内部客户端"><span class="toc-text">五、内部客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc-gen-go"><span class="toc-text">rpc.gen.go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc-go"><span class="toc-text">rpc.go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、项目初始化"><span class="toc-text">六、项目初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#config-go"><span class="toc-text">config.go</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-type-config-struct"><span class="toc-text">1. type config struct</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-c-config-Reload-bind-cfgo-BindFunc"><span class="toc-text">2. (c *config) Reload(bind cfgo.BindFunc)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-init"><span class="toc-text">3. init()</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、Mysql逆向工程"><span class="toc-text">七、Mysql逆向工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发流程"><span class="toc-text">开发流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附加："><span class="toc-text">附加：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插件-类似拦截器"><span class="toc-text">插件(类似拦截器)</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="tp-micro使用手册"><a href="#tp-micro使用手册" class="headerlink" title="tp-micro使用手册"></a>tp-micro使用手册</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><ul>
+<li><strong><em>api</em></strong>(接口管理)<ul>
+<li><code>pull_handler.gen.go</code>(pull方式接口)</li>
+<li><code>push_handler.gen.go</code>(push方式接口)</li>
+<li><code>router.gen.go</code>(自动生成route接口注册)</li>
+<li><code>router.go</code>(自定义route接口注册)</li>
+</ul>
+</li>
+<li><strong><em>args</em></strong>(静态变量管理)<ul>
+<li><code>const.gen.go</code>(自动生成常量)</li>
+<li><code>const.go</code>(常量定义)</li>
+<li><code>type.gen.go</code> (自动生成结构体)</li>
+<li><code>type.go</code>(自定义结构体)</li>
+<li><code>var.go</code>(变量定义)</li>
+</ul>
+</li>
+<li><strong><em>config</em></strong>(配置文件)<ul>
+<li><code>config.yaml</code></li>
+</ul>
+</li>
+<li><strong><em>doc</em></strong>(项目文档管理)<ul>
+<li><code>APIDoc.md</code></li>
+<li><code>databases.md</code></li>
+</ul>
+</li>
+<li><strong><em>logic</em></strong>(业务层代码)<ul>
+<li>model<ul>
+<li><code>init.go</code>(数据库控制)</li>
+</ul>
+</li>
+<li><code>tmp_code.gen.go</code>(自动生成接口)</li>
+</ul>
+</li>
+<li><strong><em>rerrs</em></strong> (错误处理管理)<ul>
+<li><code>rerrs.go</code></li>
+</ul>
+</li>
+<li><strong><em>sdk</em></strong>(内部客户端)<ul>
+<li><code>rpc.gen.go</code>(自动生成客户端接口)</li>
+<li><code>rpc.gen_test.go</code>(接口测试工具)</li>
+<li><code>rpc.go</code>(自定义库互动接口)</li>
+</ul>
+</li>
+<li><code>__tp-micro__tpl__.go</code>(模板文件)</li>
+<li><code>config.go</code>(项目初始化管理)</li>
+<li><code>main.go</code>(主程序)</li>
+<li><code>README.md</code></li>
+</ul>
+<h2 id="二、模板文件结构说明"><a href="#二、模板文件结构说明" class="headerlink" title="二、模板文件结构说明"></a>二、模板文件结构说明</h2><h4 id="type-API-PULL-interface"><a href="#type-API-PULL-interface" class="headerlink" title="type API_PULL interface"></a>type <strong>API_PULL</strong> interface</h4><ul>
+<li>pull接口自动生成</li>
+<li>pull接口即需要返回数据</li>
+<li>规范定义：<ul>
+<li>定义接口以<code>版本_模块_接口</code>，如V1_Home_GetById</li>
+<li>生成对应接口路径即<code>/v1/home/get_by_id</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">type __API_PULL__ interface &#123;</span><br><span class="line">	V1_Home</span><br><span class="line">&#125;</span><br><span class="line">type V1_Home interface &#123;</span><br><span class="line">	GetById(*GetByIdArgV1) *GetByIdResultV1</span><br><span class="line">&#125;</span><br><span class="line">type (</span><br><span class="line">	GetByIdArgV1 struct &#123;</span><br><span class="line">		id       int32</span><br><span class="line">	&#125;</span><br><span class="line">	GetByIdResultV1 struct &#123;</span><br><span class="line">		id int32</span><br><span class="line">		username string</span><br><span class="line">	&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="type-API-PUSH-interface"><a href="#type-API-PUSH-interface" class="headerlink" title="type API_PUSH interface"></a>type <strong>API_PUSH</strong> interface</h4><ul>
+<li>push接口自动生成</li>
+<li>push接口即没有返回数据</li>
+<li>规范定义：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type __API_PUSH__ interface &#123;</span><br><span class="line">&#x2F;&#x2F; 订阅推送</span><br><span class="line">	V1_Subscribe(*V1_SubscribeArg)</span><br><span class="line">&#125;</span><br><span class="line">type V1_SubscribeArg struct &#123;</span><br><span class="line">	SessionId string &#96;json:&quot;session_id&quot;&#96; &#x2F;&#x2F;uid</span><br><span class="line">	Event     string &#96;json:&quot;event&quot;&#96;      &#x2F;&#x2F;上下线状态</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="type-MYSQL-MODEL-struct"><a href="#type-MYSQL-MODEL-struct" class="headerlink" title="type MYSQL_MODEL struct"></a>type <strong>MYSQL_MODEL</strong> struct</h4><ul>
+<li>mysql自动生成Model文件</li>
+<li><code>key:&quot;pri&quot;</code>表示主键，<code>key:&quot;uni&quot;</code>表示唯一索引</li>
+<li>添加这两个表示，会自动生成相关操作的函数</li>
+<li>规范定义：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type __MYSQL_MODEL__ struct &#123;</span><br><span class="line">	User</span><br><span class="line">&#125;</span><br><span class="line">type User struct &#123;</span><br><span class="line">	Id   int64  &#96;key:&quot;pri&quot;&#96;</span><br><span class="line">	Username string &#96;key:&quot;uni&quot;&#96;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="type-MONGO-MODEL-struct"><a href="#type-MONGO-MODEL-struct" class="headerlink" title="type MONGO_MODEL struct"></a>type <strong>MONGO_MODEL</strong> struct</h4><ul>
+<li>mongo自动生成Model文件</li>
+<li><code>key:&quot;pri&quot;</code>表示主键，<code>key:&quot;uni&quot;</code>表示唯一索引</li>
+<li>添加这两个表示，会自动生成相关操作的函数</li>
+<li>规范定义：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type __MONGO_MODEL__ struct &#123;</span><br><span class="line">	UserMeta</span><br><span class="line">&#125;</span><br><span class="line">type UserMeta struct &#123;</span><br><span class="line">	Id   int64  &#96;key:&quot;pri&quot;&#96;</span><br><span class="line">	Username string &#96;key:&quot;uni&quot;&#96;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="三、接口管理"><a href="#三、接口管理" class="headerlink" title="三、接口管理"></a>三、接口管理</h2><h4 id="pull-handler-gen-go"><a href="#pull-handler-gen-go" class="headerlink" title="pull_handler.gen.go"></a>pull_handler.gen.go</h4><ul>
+<li>pull方式接口(即有返回数据)</li>
+<li>功能：将api接口指向实际业务处理</li>
+</ul>
+<h4 id="push-handler-gen-go"><a href="#push-handler-gen-go" class="headerlink" title="push_handler.gen.go"></a>push_handler.gen.go</h4><ul>
+<li>push方式接口(即不需要返回数据)</li>
+<li>功能：将api接口指向实际业务处理</li>
+</ul>
+<h2 id="四、业务层"><a href="#四、业务层" class="headerlink" title="四、业务层"></a>四、业务层</h2><h4 id="tmp-code-gen-go"><a href="#tmp-code-gen-go" class="headerlink" title="tmp_code.gen.go"></a>tmp_code.gen.go</h4><ul>
+<li>模板文件自动生成的接口格式</li>
+<li>操作：复制到分类文件下，并删除或注释改接口</li>
+</ul>
+<h2 id="五、内部客户端"><a href="#五、内部客户端" class="headerlink" title="五、内部客户端"></a>五、内部客户端</h2><h4 id="rpc-gen-go"><a href="#rpc-gen-go" class="headerlink" title="rpc.gen.go"></a>rpc.gen.go</h4><ul>
+<li>根据模板文件自动生成的客户端</li>
+</ul>
+<h4 id="rpc-go"><a href="#rpc-go" class="headerlink" title="rpc.go"></a>rpc.go</h4><ul>
+<li>自定义客户端接口</li>
+<li>如果需要对客户端参数进行修改，复制rpc.gen.go对应的接口，到该文件下进行修改即可</li>
+</ul>
+<h2 id="六、项目初始化"><a href="#六、项目初始化" class="headerlink" title="六、项目初始化"></a>六、项目初始化</h2><h4 id="config-go"><a href="#config-go" class="headerlink" title="config.go"></a>config.go</h4><h5 id="1-type-config-struct"><a href="#1-type-config-struct" class="headerlink" title="1. type config struct"></a>1. type config struct</h5><ul>
+<li>读取配置文件config/config.yaml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var cfg &#x3D; &amp;config&#123;</span><br><span class="line">	Srv: micro.SrvConfig&#123;</span><br><span class="line">		ListenAddress:     &quot;:0&quot;,</span><br><span class="line">		EnableHeartbeat:   true,</span><br><span class="line">		PrintDetail:       true,</span><br><span class="line">		CountTime:         true,</span><br><span class="line">		SlowCometDuration: time.Millisecond * 500,</span><br><span class="line">	&#125;,</span><br><span class="line">	Etcd: etcd.EasyConfig&#123;</span><br><span class="line">		Endpoints: []string&#123;&quot;http:&#x2F;&#x2F;127.0.0.1:2379&quot;&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">	Redis:       *redis.NewConfig(),</span><br><span class="line">	CacheExpire: time.Hour * 24,</span><br><span class="line">	LogLevel:    &quot;TRACE&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="2-c-config-Reload-bind-cfgo-BindFunc"><a href="#2-c-config-Reload-bind-cfgo-BindFunc" class="headerlink" title="2. (c *config) Reload(bind cfgo.BindFunc)"></a>2. (c *config) Reload(bind cfgo.BindFunc)</h5><ul>
+<li>执行配置加载</li>
+</ul>
+<h5 id="3-init"><a href="#3-init" class="headerlink" title="3. init()"></a>3. init()</h5><ul>
+<li>初始化配置</li>
+</ul>
+<h2 id="七、Mysql逆向工程"><a href="#七、Mysql逆向工程" class="headerlink" title="七、Mysql逆向工程"></a>七、Mysql逆向工程</h2><ul>
+<li>在数据库中建好数据库数据表，执行以下命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">micro tpl -host [ip] -port [3306] -username qas -password [password] -db [DBName] -table [TableName] -ssh_user cds -ssh_host [跳板机地址] -ssh_port 38390</span><br></pre></td></tr></table></figure></li>
+<li>命令执行后，会自动在模板文件中添加数据表结构生成结构，再执行micro gen生成model文件即可</li>
+</ul>
+<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ul>
+<li>接口开发<ol>
+<li>编写模板文件</li>
+<li>调整api</li>
+<li>调整sdk</li>
+<li>logic实际业务逻辑开发</li>
+</ol>
+</li>
+<li>读取配置文件<ol>
+<li>定义配置变量</li>
+<li>config.yaml配置变量内容</li>
+<li>到config.go中读取文件配置，并在Reload赋值到变量</li>
+</ol>
+</li>
+<li>接口插件控制<ol>
+<li>在api中针对接口或接口类添加插件拦截</li>
+<li>如果有需要，在sdk对应接口添加插件例外条件</li>
+</ol>
+</li>
+<li>调用其他项目接口<ol>
+<li>在config.go的Reload注册sdk</li>
+<li>在具体业务位置调用sdk</li>
+</ol>
+</li>
+</ul>
+<h2 id="附加："><a href="#附加：" class="headerlink" title="附加："></a>附加：</h2><h3 id="插件-类似拦截器"><a href="#插件-类似拦截器" class="headerlink" title="插件(类似拦截器)"></a>插件(类似拦截器)</h3>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">Title:</span>tp-micro使用说明</p>
+    
+    <p><span class="copy-title">Author:</span><a  title="chiachan163">chiachan163</a></p>
+    <p><span class="copy-title">Created At:</span>2019-12-21, 15:13:47</p>
+    <p><span class="copy-title">Updated At:</span>2020-06-10, 22:56:56</p>
+    <span class="copy-title">Url:</span><a class="post-url" href="/2019/12/21/tp-micro/tp-micro%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="tp-micro使用说明">https://chiachan163.github.io/2019/12/21/tp-micro/tp-micro%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</a>
+    <p>
+        <span class="copy-title">Copyright:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">&#39;Attribution-non-commercial-shared in the same way 4.0&#39;</a> Reprint please keep the original link and author.
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><span class="miit">
+                <img src="/img/gov.png" title="中华人民共和国工业和信息化部">
+                <a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener">粤ICP备19018415号</a>
+        </span>
+    
+    ©2019-2024 ChiaChan
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #ffffff;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #ffffff;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #000000;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(https://img.zcool.cn/community/01a3f4589ea315a801219c77c63f72.jpg@2o.jpg);
+    }
+    
+    
+    #post .index {
+        background: url(https://img.zcool.cn/community/01a3f4589ea315a801219c77c63f72.jpg@2o.jpg);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        background: url("https://hbimg.huabanimg.com/39223d2d592ba97930cca93fcf9003e34ff6d80947882-ix2E5X_fw658/format/webp");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/chiachan163">github</a>
+    
+</div>
+
+
+</html>
