@@ -124,13 +124,15 @@
     border-top: none;
     border-right: none !important;
     display: inline;
-    margin-right: 126px;
+    margin-right: 150px;
+    color: #3e87e3;
+    font-size: 16px;
   }
   .nav-left .left-bottom a.about.hasFriend {
     margin-right: 0;
   }
   .nav-left .left-bottom a.about:after {
-    content: '·';
+    content: '';
     margin-left: 7px;
   }
   .nav-left .left-bottom a.friends {
