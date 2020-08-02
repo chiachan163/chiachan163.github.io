@@ -6,12 +6,12 @@
   <meta name="keywords" content=" tp-micro , golang ">
   <meta name="description" content="go module折腾笔记(tp-micro) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="go modulego module是Go1.11版本之后官方推出的版本管理工具，并且从Go1.13版本开始，go module将是Go语言默认的依赖管理工具。 一、为什么需要依赖管理最早的时候，Go所依赖的所有的第三方库都放在GOPATH这个目录下面。这就导致了同一个库只能保存一个版本的代码。如果不同的项目依赖同一个第三方的库的不同版本，应该怎么解决？ 二、GO111MODULE要启用go mo">
+<meta name="description" content="tp-micro mysql非事务回调 使用方式1234var db, _ &#x3D; mysqlHandler.RegCacheableDB(new(Device), cacheExpire, args.DeviceSql)db.Callback(func(tx sqlx.DbOrTx) error &amp;#123;		...(执行)	&amp;#125;    事务 使用方式123model.GetMy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="go module折腾笔记(tp-micro)">
-<meta property="og:url" content="https://chiachan163.github.io/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/index.html">
+<meta property="og:title" content="tp-micro mysql">
+<meta property="og:url" content="https://chiachan163.github.io/2019/12/21/tp-micro/tp-micro%20mysql/index.html">
 <meta property="og:site_name" content="未来可期">
-<meta property="og:description" content="go modulego module是Go1.11版本之后官方推出的版本管理工具，并且从Go1.13版本开始，go module将是Go语言默认的依赖管理工具。 一、为什么需要依赖管理最早的时候，Go所依赖的所有的第三方库都放在GOPATH这个目录下面。这就导致了同一个库只能保存一个版本的代码。如果不同的项目依赖同一个第三方的库的不同版本，应该怎么解决？ 二、GO111MODULE要启用go mo">
+<meta property="og:description" content="tp-micro mysql非事务回调 使用方式1234var db, _ &#x3D; mysqlHandler.RegCacheableDB(new(Device), cacheExpire, args.DeviceSql)db.Callback(func(tx sqlx.DbOrTx) error &amp;#123;		...(执行)	&amp;#125;    事务 使用方式123model.GetMy">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-21T07:13:47.000Z">
 <meta property="article:modified_time" content="2020-06-10T14:56:56.611Z">
@@ -25,7 +25,7 @@
 
 <link href="/css/style.css?v=1.1.0" rel="stylesheet">
 
-<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
 
 <link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
 
@@ -130,11 +130,11 @@
 
 
 <ul>
-    <li><div class="all active" data-rel="全部文章">全部文章<small>(3)</small></div></li>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(4)</small></div></li>
     
         
             
-            <li><div data-rel="golang">golang<small>(3)</small></div>
+            <li><div data-rel="golang">golang<small>(4)</small></div>
                 
             </li>
             
@@ -150,7 +150,7 @@
     </div>
     <div><a class="about  " target="_blank" href="/about">博主简介</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="3">
+<input type="hidden" id="yelog_site_posts_number" value="4">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -197,6 +197,10 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>go-micro</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>golang</a>
             </li>
         
@@ -212,14 +216,6 @@
     <nav id="title-list-nav">
         
         <a  class="全部文章 golang "
-           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
-           data-tag="tp-micro,golang"
-           data-author="" >
-            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
-            <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
-        </a>
-        
-        <a  class="全部文章 golang "
            href="/2019/12/21/tp-micro/tp-micro%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
            data-tag="tp-micro,golang"
            data-author="" >
@@ -228,10 +224,26 @@
         </a>
         
         <a  class="全部文章 golang "
+           href="/2019/12/21/go-micro/go-micro%E5%91%BD%E4%BB%A4%E7%BF%BB%E8%AF%91/"
+           data-tag="golang,go-micro"
+           data-author="" >
+            <span class="post-title" title="go-micro命令">go-micro命令</span>
+            <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
+        </a>
+        
+        <a  class="全部文章 golang "
            href="/2019/12/21/tp-micro/tp-micro%20mysql/"
            data-tag="tp-micro,golang"
            data-author="" >
             <span class="post-title" title="tp-micro mysql">tp-micro mysql</span>
+            <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
+        </a>
+        
+        <a  class="全部文章 golang "
+           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
+           data-tag="tp-micro,golang"
+           data-author="" >
+            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
