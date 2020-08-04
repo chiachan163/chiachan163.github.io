@@ -244,10 +244,10 @@
         </a>
         
         <a  class="全部文章 golang "
-           href="/2019/12/21/tp-micro/tp-micro%20mysql/"
+           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
            data-tag="golang,tp-micro"
            data-author="" >
-            <span class="post-title" title="tp-micro mysql">tp-micro mysql</span>
+            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
@@ -260,10 +260,10 @@
         </a>
         
         <a  class="全部文章 golang "
-           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
+           href="/2019/12/21/tp-micro/tp-micro%20mysql/"
            data-tag="golang,tp-micro"
            data-author="" >
-            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
+            <span class="post-title" title="tp-micro mysql">tp-micro mysql</span>
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
@@ -313,7 +313,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-06-10 22:56:56'>2019-12-21 15:13</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-05 01:16:54'>2019-12-21 15:13</time>
         
     </div>
     <div class="article-meta">
@@ -335,7 +335,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#go-module"><span class="toc-text">go module</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、为什么需要依赖管理"><span class="toc-text">一、为什么需要依赖管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、GO111MODULE"><span class="toc-text">二、GO111MODULE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、GOPROXY"><span class="toc-text">三、GOPROXY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、常用的go-mod"><span class="toc-text">四、常用的go mod</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、go-mod文件"><span class="toc-text">五、go.mod文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import"><span class="toc-text">import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#require"><span class="toc-text">require</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-text">replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#indirect"><span class="toc-text">indirect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、下载go-module管理的项目"><span class="toc-text">六、下载go module管理的项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、tp-micro开发新项目"><span class="toc-text">七、tp-micro开发新项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成项目"><span class="toc-text">生成项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决报错"><span class="toc-text">解决报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发过程"><span class="toc-text">开发过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、目前存在且未解决的问题"><span class="toc-text">八、目前存在且未解决的问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#go-module"><span class="toc-text">go module</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、为什么需要依赖管理"><span class="toc-text">一、为什么需要依赖管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、GO111MODULE"><span class="toc-text">二、GO111MODULE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、GOPROXY"><span class="toc-text">三、GOPROXY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、常用的go-mod"><span class="toc-text">四、常用的go mod</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、go-mod文件"><span class="toc-text">五、go.mod文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import"><span class="toc-text">import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#require"><span class="toc-text">require</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-text">replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#indirect"><span class="toc-text">indirect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、下载go-module管理的项目"><span class="toc-text">六、下载go module管理的项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、tp-micro开发新项目"><span class="toc-text">七、tp-micro开发新项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成项目"><span class="toc-text">生成项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决报错"><span class="toc-text">解决报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发过程"><span class="toc-text">开发过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、解决项目间相互依赖"><span class="toc-text">八、解决项目间相互依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九、目前存在且未解决的问题"><span class="toc-text">九、目前存在且未解决的问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -436,9 +436,9 @@
 </li>
 </ol>
 <hr>
-<h2 id="八、目前存在且未解决的问题"><a href="#八、目前存在且未解决的问题" class="headerlink" title="八、目前存在且未解决的问题"></a>八、目前存在且未解决的问题</h2><ol>
+<h2 id="八、解决项目间相互依赖"><a href="#八、解决项目间相互依赖" class="headerlink" title="八、解决项目间相互依赖"></a>八、解决项目间相互依赖</h2><p>本地项目依赖的项目，在本项目go.mod中，用replace将本项目指向本地路径即可</p>
+<h2 id="九、目前存在且未解决的问题"><a href="#九、目前存在且未解决的问题" class="headerlink" title="九、目前存在且未解决的问题"></a>九、目前存在且未解决的问题</h2><ol>
 <li>如果依赖本地项目,需要先手动把本地代码下拉完整</li>
-<li>本地项目间不能相互依赖，如果需要相互依赖，不能使用replace执行本地，必须使用require tag</li>
 </ol>
 
       
