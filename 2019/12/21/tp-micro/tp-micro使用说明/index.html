@@ -6,18 +6,17 @@
   <meta name="keywords" content=" golang , tp-micro ">
   <meta name="description" content="tp-micro使用说明 | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="micro工具库由以下几个部分组成： api - API Gateway 网关。它是独立的HTTP入口，基于服务发现机制实现动态路由。 web - Web Dashboard web控制台。 提供可视化的发现与管理监控界面。 cli - Command line interface 命令行接口。提供描述、查询终端服务的交互入口。 bot - Slack与hipchat bot消息通知工具。也就是">
+<meta name="description" content="在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。 CAP理解：  Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same">
 <meta property="og:type" content="article">
-<meta property="og:title" content="go-micro学习笔记 - (一)介绍">
-<meta property="og:url" content="https://chiachan163.github.io/2020/08/03/go-micro/(%E4%B8%80)%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="CAP定律">
+<meta property="og:url" content="https://chiachan163.github.io/2020/08/06/go-micro/CAP%E5%AE%9A%E5%BE%8B/index.html">
 <meta property="og:site_name" content="未来可期">
-<meta property="og:description" content="micro工具库由以下几个部分组成： api - API Gateway 网关。它是独立的HTTP入口，基于服务发现机制实现动态路由。 web - Web Dashboard web控制台。 提供可视化的发现与管理监控界面。 cli - Command line interface 命令行接口。提供描述、查询终端服务的交互入口。 bot - Slack与hipchat bot消息通知工具。也就是">
+<meta property="og:description" content="在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。 CAP理解：  Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-02T17:15:47.000Z">
-<meta property="article:modified_time" content="2020-08-03T16:59:27.136Z">
+<meta property="article:published_time" content="2020-08-06T10:43:52.000Z">
+<meta property="article:modified_time" content="2020-08-06T10:47:24.590Z">
 <meta property="article:author" content="chiachan163">
-<meta property="article:tag" content="go-micro">
-<meta property="article:tag" content="golang">
+<meta property="article:tag" content="分布式">
 <meta name="twitter:card" content="summary">
 
 
@@ -130,7 +129,7 @@
 
 
 <ul>
-    <li><div class="all active" data-rel="全部文章">全部文章<small>(5)</small></div></li>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(7)</small></div></li>
     
         
             
@@ -138,15 +137,23 @@
     
         
             
-            <li><div data-rel="golang"><i class="fold iconfont icon-right"></i>golang<small>(5)</small></div>
+            <li><div data-rel="golang"><i class="fold iconfont icon-right"></i>golang<small>(6)</small></div>
                 
                     <ul class="sub hide">
                         
-                        <li><div data-rel="golang<--->go-micro">go-micro<small>(1)</small></div>
+                        <li><div data-rel="golang<--->go-micro">go-micro<small>(2)</small></div>
                             
                         </li>
                             
                     </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="分布式">分布式<small>(1)</small></div>
                 
             </li>
             
@@ -162,7 +169,7 @@
     </div>
     <div><a class="about  " target="_blank" href="/about">博主简介</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="7">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -220,6 +227,10 @@
                 <i class="iconfont icon-tag"></i><a>tp-micro</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式</a>
+            </li>
+        
     </div>
 
 </div>
@@ -227,12 +238,20 @@
     
     <nav id="title-list-nav">
         
+        <a  class="全部文章 分布式 "
+           href="/2020/08/06/go-micro/CAP%E5%AE%9A%E5%BE%8B/"
+           data-tag="分布式"
+           data-author="" >
+            <span class="post-title" title="CAP定律">CAP定律</span>
+            <span class="post-date" title="2020-08-06 18:43:52">2020/08/06</span>
+        </a>
+        
         <a  class="全部文章 golang go-micro "
-           href="/2020/08/03/go-micro/(%E4%B8%80)%E4%BB%8B%E7%BB%8D/"
+           href="/2020/08/06/go-micro/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
            data-tag="go-micro,golang"
            data-author="" >
-            <span class="post-title" title="go-micro学习笔记 - (一)介绍">go-micro学习笔记 - (一)介绍</span>
-            <span class="post-date" title="2020-08-03 01:15:47">2020/08/03</span>
+            <span class="post-title" title="微服务介绍">微服务介绍</span>
+            <span class="post-date" title="2020-08-06 18:32:56">2020/08/06</span>
         </a>
         
         <a  class="全部文章 golang "
@@ -243,11 +262,19 @@
             <span class="post-date" title="2020-08-03 01:15:47">2020/08/03</span>
         </a>
         
+        <a  class="全部文章 golang go-micro "
+           href="/2020/08/03/go-micro/(%E4%B8%80)%E4%BB%8B%E7%BB%8D/"
+           data-tag="go-micro,golang"
+           data-author="" >
+            <span class="post-title" title="go-micro学习笔记 - (一)介绍">go-micro学习笔记 - (一)介绍</span>
+            <span class="post-date" title="2020-08-03 01:15:47">2020/08/03</span>
+        </a>
+        
         <a  class="全部文章 golang "
-           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
+           href="/2019/12/21/tp-micro/tp-micro%20mysql/"
            data-tag="golang,tp-micro"
            data-author="" >
-            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
+            <span class="post-title" title="tp-micro mysql">tp-micro mysql</span>
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
@@ -260,10 +287,10 @@
         </a>
         
         <a  class="全部文章 golang "
-           href="/2019/12/21/tp-micro/tp-micro%20mysql/"
+           href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
            data-tag="golang,tp-micro"
            data-author="" >
-            <span class="post-title" title="tp-micro mysql">tp-micro mysql</span>
+            <span class="post-title" title="go module折腾笔记(tp-micro)">go module折腾笔记(tp-micro)</span>
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
