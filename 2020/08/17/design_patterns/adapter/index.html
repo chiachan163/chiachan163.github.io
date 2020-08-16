@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>http状态码-5xx服务器错误 | 未来可期</title>
-  <meta name="keywords" content=" http ">
-  <meta name="description" content="http状态码-5xx服务器错误 | 未来可期">
+  <title>Adapter模式(适配器模式) | 未来可期</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="Adapter模式(适配器模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Chiachan个人信息 学历：本科(统招) 专业：计算机科学与技术 学校：广州航海学院 证书：软件设计师(中级)、NISP一级  技能树   item content    language golang、java   sql mysql、mongodb、redis   mq kafka、rabbitmq   design 常见设计模式   special 数学思路解决复杂数据问题或提高性能效率">
 <meta property="og:type" content="website">
@@ -417,9 +417,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-network/http状态码" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/adapter" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">http状态码-5xx服务器错误</h1>
+        <h1 class="article-title">Adapter模式(适配器模式)</h1>
     
     <div class="article-meta">
         
@@ -429,9 +429,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="network">network</a> > 
-            
-            <a  data-rel="network&lt;---&gt;http">http</a>
+            <a  data-rel="设计模式">设计模式</a>
             
         </span>
         
@@ -439,14 +437,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">http</a>
+            <a class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:17:59'>2020-08-06 19:16</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-17 00:14:32'>2020-08-17 00:10</time>
         
     </div>
     <div class="article-meta">
@@ -468,7 +466,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx服务器错误"><span class="toc-text">5xx服务器错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#500-Internal-Server-Error"><span class="toc-text">* 500 Internal Server Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#501-Not-Implemented"><span class="toc-text">* 501 Not Implemented</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#502-Bad-Gateway"><span class="toc-text">* 502 Bad Gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#503-Service-Unavailable"><span class="toc-text">* 503 Service Unavailable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#504-Gateway-Timeout"><span class="toc-text">* 504 Gateway Timeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#505-HTTP-Version-Not-Supported"><span class="toc-text">* 505 HTTP Version Not Supported</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#506-Variant-Also-Negotiates（RFC-2295）"><span class="toc-text">506 Variant Also Negotiates（RFC 2295）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#507-Insufficient-Storage（WebDAV；RFC-4918）"><span class="toc-text">507 Insufficient Storage（WebDAV；RFC 4918）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#508-Loop-Detected-（WebDAV；RFC-5842）"><span class="toc-text">508 Loop Detected （WebDAV；RFC 5842）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#510-Not-Extended（RFC-2774）"><span class="toc-text">510 Not Extended（RFC 2774）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#511-Network-Authentication-Required-（RFC-6585）"><span class="toc-text">511 Network Authentication Required （RFC 6585）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是适配器模式？"><span class="toc-text">什么是适配器模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -484,56 +482,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h2><ul>
-<li>服务器错误指服务器无法完成明显有效的请求。</li>
-<li>状态码5xx代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。</li>
-<li>除非这是一个HEAD请求，否则<strong>服务器</strong>应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。<strong>浏览器</strong>应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</li>
-<li>以下*表示常见错误</li>
+        <h2 id="什么是适配器模式？"><a href="#什么是适配器模式？" class="headerlink" title="什么是适配器模式？"></a>什么是适配器模式？</h2><ul>
+<li>桥接模式即用于填补现有程序和所需程序之间差异的设计模式</li>
+<li>作用是加个适配器以便于复用</li>
+<li>适配器会对现有的类进行适配，生产新的类</li>
+<li>适配器模式可以在完全不改变现有代码的前提下使现有代码适配于新的接口</li>
+<li>适配器模式可以是新旧版本兼容，帮助我们轻松地同时维护新版本和旧版本</li>
+<li>适配器模式用于填补具有不同接口的两个类之间的缝隙</li>
 </ul>
-<h3 id="500-Internal-Server-Error"><a href="#500-Internal-Server-Error" class="headerlink" title="* 500 Internal Server Error"></a>* 500 Internal Server Error</h3><ul>
-<li>通用错误消息，服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理，且没有给出具体错误信息。</li>
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><ul>
+<li>Adaptee是现有的类</li>
+<li>Adapter是所需的类(即适配器)</li>
+<li>Adapter是将Adaptee的功能在新需求下的体现</li>
 </ul>
-<h3 id="501-Not-Implemented"><a href="#501-Not-Implemented" class="headerlink" title="* 501 Not Implemented"></a>* 501 Not Implemented</h3><ul>
-<li>服务器不支持当前请求所需要的某个功能。</li>
-<li>当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。（例如，网络服务API的新功能）</li>
-</ul>
-<h3 id="502-Bad-Gateway"><a href="#502-Bad-Gateway" class="headerlink" title="* 502 Bad Gateway"></a>* 502 Bad Gateway</h3><ul>
-<li>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</li>
-</ul>
-<h3 id="503-Service-Unavailable"><a href="#503-Service-Unavailable" class="headerlink" title="* 503 Service Unavailable"></a>* 503 Service Unavailable</h3><ul>
-<li>由于临时的服务器维护或者过载，服务器当前无法处理请求。</li>
-<li>这个状况是暂时的，并且将在一段时间以后恢复。<ul>
-<li>如果能够预计延迟时间，那么响应中可以包含一个Retry-After头用以标明这个延迟时间。</li>
-<li>如果没有给出这个Retry-After信息，那么客户端应当以处理500响应的方式处理它。</li>
-</ul>
-</li>
-</ul>
-<h3 id="504-Gateway-Timeout"><a href="#504-Gateway-Timeout" class="headerlink" title="* 504 Gateway Timeout"></a>* 504 Gateway Timeout</h3><ul>
-<li>作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器（URI标识出的服务器，例如HTTP、FTP、LDAP）或者辅助服务器（例如DNS）收到响应。</li>
-<li>注意：某些代理服务器在DNS查询超时时会返回400或者500错误。</li>
-</ul>
-<h3 id="505-HTTP-Version-Not-Supported"><a href="#505-HTTP-Version-Not-Supported" class="headerlink" title="* 505 HTTP Version Not Supported"></a>* 505 HTTP Version Not Supported</h3><ul>
-<li>服务器不支持，或者拒绝支持在请求中使用的HTTP版本。</li>
-<li>这暗示着服务器不能或不愿使用与客户端相同的版本。</li>
-<li>响应中应当包含一个描述了为何版本不被支持以及服务器支持哪些协议的实体。</li>
-</ul>
-<h3 id="506-Variant-Also-Negotiates（RFC-2295）"><a href="#506-Variant-Also-Negotiates（RFC-2295）" class="headerlink" title="506 Variant Also Negotiates（RFC 2295）"></a>506 Variant Also Negotiates（RFC 2295）</h3><ul>
-<li>由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误，被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</li>
-</ul>
-<h3 id="507-Insufficient-Storage（WebDAV；RFC-4918）"><a href="#507-Insufficient-Storage（WebDAV；RFC-4918）" class="headerlink" title="507 Insufficient Storage（WebDAV；RFC 4918）"></a>507 Insufficient Storage（WebDAV；RFC 4918）</h3><ul>
-<li>服务器无法存储完成请求所必须的内容。</li>
-<li>这个状况被认为是临时的。</li>
-</ul>
-<h3 id="508-Loop-Detected-（WebDAV；RFC-5842）"><a href="#508-Loop-Detected-（WebDAV；RFC-5842）" class="headerlink" title="508 Loop Detected （WebDAV；RFC 5842）"></a>508 Loop Detected （WebDAV；RFC 5842）</h3><ul>
-<li>服务器在处理请求时陷入死循环。</li>
-</ul>
-<h3 id="510-Not-Extended（RFC-2774）"><a href="#510-Not-Extended（RFC-2774）" class="headerlink" title="510 Not Extended（RFC 2774）"></a>510 Not Extended（RFC 2774）</h3><ul>
-<li>获取资源所需要的策略并没有被满足。</li>
-</ul>
-<h3 id="511-Network-Authentication-Required-（RFC-6585）"><a href="#511-Network-Authentication-Required-（RFC-6585）" class="headerlink" title="511 Network Authentication Required （RFC 6585）"></a>511 Network Authentication Required （RFC 6585）</h3><ul>
-<li>客户端需要进行身份验证才能获得网络访问权限，旨在限制用户群访问特定网络。（例如连接WiFi热点时的强制网络门户）</li>
-</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Adapter</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Target <span class="keyword">interface</span> &#123;</span><br><span class="line">	targetMethod1()</span><br><span class="line">	targetMethod2()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Adaptee <span class="keyword">struct</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *Adaptee)</span> <span class="title">methodA</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"methodA"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *Adaptee)</span> <span class="title">methodB</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"methodB"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Adapter <span class="keyword">struct</span> &#123;</span><br><span class="line">	Target</span><br><span class="line">	*Adaptee</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *Adapter)</span> <span class="title">targetMethod1</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a.methodA()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *Adapter)</span> <span class="title">targetMethod2</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a.methodB()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Adapter</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestAdapterMethodA</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	adapter := Adapter&#123;&#125;</span><br><span class="line">	adapter.methodA()</span><br><span class="line">	adapter.methodB()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
     </div>
