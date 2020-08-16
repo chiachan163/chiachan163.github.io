@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CAP定律 | 未来可期</title>
-  <meta name="keywords" content=" 分布式 ">
-  <meta name="description" content="CAP定律 | 未来可期">
+  <title>http状态码-5xx服务器错误 | 未来可期</title>
+  <meta name="keywords" content=" http ">
+  <meta name="description" content="http状态码-5xx服务器错误 | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="什么是桥接模式？ 桥接模式即将类的功能层次结构与实现层次结构分离。 作用是在类的功能层次结构和类的实现层次结构之间搭建桥梁 当想要增加功能时，只需要在类的功能层次结构一侧添加类即可，不必对类的实现层次结构做任何修改。而且，增加后的功能可以被所有的实现使用  示范代码(golang)画一个红色圆型和黄色圆型 1234567891011121314151617181920212223242526272">
 <meta property="og:type" content="article">
@@ -409,9 +409,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-go-micro/CAP定律" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-network/http状态码" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CAP定律</h1>
+        <h1 class="article-title">http状态码-5xx服务器错误</h1>
     
     <div class="article-meta">
         
@@ -421,7 +421,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="分布式">分布式</a>
+            <a  data-rel="network">network</a> > 
+            
+            <a  data-rel="network&lt;---&gt;http">http</a>
             
         </span>
         
@@ -429,14 +431,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">分布式</a>
+            <a class="color5">http</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 18:47:24'>2020-08-06 18:43</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:17:59'>2020-08-06 19:16</time>
         
     </div>
     <div class="article-meta">
@@ -458,7 +460,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5xx服务器错误"><span class="toc-text">5xx服务器错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#500-Internal-Server-Error"><span class="toc-text">* 500 Internal Server Error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#501-Not-Implemented"><span class="toc-text">* 501 Not Implemented</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#502-Bad-Gateway"><span class="toc-text">* 502 Bad Gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#503-Service-Unavailable"><span class="toc-text">* 503 Service Unavailable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#504-Gateway-Timeout"><span class="toc-text">* 504 Gateway Timeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#505-HTTP-Version-Not-Supported"><span class="toc-text">* 505 HTTP Version Not Supported</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#506-Variant-Also-Negotiates（RFC-2295）"><span class="toc-text">506 Variant Also Negotiates（RFC 2295）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#507-Insufficient-Storage（WebDAV；RFC-4918）"><span class="toc-text">507 Insufficient Storage（WebDAV；RFC 4918）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#508-Loop-Detected-（WebDAV；RFC-5842）"><span class="toc-text">508 Loop Detected （WebDAV；RFC 5842）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#510-Not-Extended（RFC-2774）"><span class="toc-text">510 Not Extended（RFC 2774）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#511-Network-Authentication-Required-（RFC-6585）"><span class="toc-text">511 Network Authentication Required （RFC 6585）</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -474,12 +476,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。</p>
-<p>CAP理解：</p>
-<ul>
-<li>Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same data at the same time）。</li>
-<li>Availability：高可用性就是在任何时候都可以读写（Reads and writes always succeed）。</li>
-<li>Partition Tolerance：分区容错性是在网络故障、某些节点不能通信的时候系统仍能继续工作（The system continue to operate despite arbitrary message loss or failure of part of the the system）。以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。</li>
+        <h2 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h2><ul>
+<li>服务器错误指服务器无法完成明显有效的请求。</li>
+<li>状态码5xx代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。</li>
+<li>除非这是一个HEAD请求，否则<strong>服务器</strong>应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。<strong>浏览器</strong>应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</li>
+<li>以下*表示常见错误</li>
+</ul>
+<h3 id="500-Internal-Server-Error"><a href="#500-Internal-Server-Error" class="headerlink" title="* 500 Internal Server Error"></a>* 500 Internal Server Error</h3><ul>
+<li>通用错误消息，服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理，且没有给出具体错误信息。</li>
+</ul>
+<h3 id="501-Not-Implemented"><a href="#501-Not-Implemented" class="headerlink" title="* 501 Not Implemented"></a>* 501 Not Implemented</h3><ul>
+<li>服务器不支持当前请求所需要的某个功能。</li>
+<li>当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。（例如，网络服务API的新功能）</li>
+</ul>
+<h3 id="502-Bad-Gateway"><a href="#502-Bad-Gateway" class="headerlink" title="* 502 Bad Gateway"></a>* 502 Bad Gateway</h3><ul>
+<li>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</li>
+</ul>
+<h3 id="503-Service-Unavailable"><a href="#503-Service-Unavailable" class="headerlink" title="* 503 Service Unavailable"></a>* 503 Service Unavailable</h3><ul>
+<li>由于临时的服务器维护或者过载，服务器当前无法处理请求。</li>
+<li>这个状况是暂时的，并且将在一段时间以后恢复。<ul>
+<li>如果能够预计延迟时间，那么响应中可以包含一个Retry-After头用以标明这个延迟时间。</li>
+<li>如果没有给出这个Retry-After信息，那么客户端应当以处理500响应的方式处理它。</li>
+</ul>
+</li>
+</ul>
+<h3 id="504-Gateway-Timeout"><a href="#504-Gateway-Timeout" class="headerlink" title="* 504 Gateway Timeout"></a>* 504 Gateway Timeout</h3><ul>
+<li>作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器（URI标识出的服务器，例如HTTP、FTP、LDAP）或者辅助服务器（例如DNS）收到响应。</li>
+<li>注意：某些代理服务器在DNS查询超时时会返回400或者500错误。</li>
+</ul>
+<h3 id="505-HTTP-Version-Not-Supported"><a href="#505-HTTP-Version-Not-Supported" class="headerlink" title="* 505 HTTP Version Not Supported"></a>* 505 HTTP Version Not Supported</h3><ul>
+<li>服务器不支持，或者拒绝支持在请求中使用的HTTP版本。</li>
+<li>这暗示着服务器不能或不愿使用与客户端相同的版本。</li>
+<li>响应中应当包含一个描述了为何版本不被支持以及服务器支持哪些协议的实体。</li>
+</ul>
+<h3 id="506-Variant-Also-Negotiates（RFC-2295）"><a href="#506-Variant-Also-Negotiates（RFC-2295）" class="headerlink" title="506 Variant Also Negotiates（RFC 2295）"></a>506 Variant Also Negotiates（RFC 2295）</h3><ul>
+<li>由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误，被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。</li>
+</ul>
+<h3 id="507-Insufficient-Storage（WebDAV；RFC-4918）"><a href="#507-Insufficient-Storage（WebDAV；RFC-4918）" class="headerlink" title="507 Insufficient Storage（WebDAV；RFC 4918）"></a>507 Insufficient Storage（WebDAV；RFC 4918）</h3><ul>
+<li>服务器无法存储完成请求所必须的内容。</li>
+<li>这个状况被认为是临时的。</li>
+</ul>
+<h3 id="508-Loop-Detected-（WebDAV；RFC-5842）"><a href="#508-Loop-Detected-（WebDAV；RFC-5842）" class="headerlink" title="508 Loop Detected （WebDAV；RFC 5842）"></a>508 Loop Detected （WebDAV；RFC 5842）</h3><ul>
+<li>服务器在处理请求时陷入死循环。</li>
+</ul>
+<h3 id="510-Not-Extended（RFC-2774）"><a href="#510-Not-Extended（RFC-2774）" class="headerlink" title="510 Not Extended（RFC 2774）"></a>510 Not Extended（RFC 2774）</h3><ul>
+<li>获取资源所需要的策略并没有被满足。</li>
+</ul>
+<h3 id="511-Network-Authentication-Required-（RFC-6585）"><a href="#511-Network-Authentication-Required-（RFC-6585）" class="headerlink" title="511 Network Authentication Required （RFC 6585）"></a>511 Network Authentication Required （RFC 6585）</h3><ul>
+<li>客户端需要进行身份验证才能获得网络访问权限，旨在限制用户群访问特定网络。（例如连接WiFi热点时的强制网络门户）</li>
 </ul>
 
       

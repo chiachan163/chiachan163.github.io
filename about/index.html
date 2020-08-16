@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CAP定律 | 未来可期</title>
-  <meta name="keywords" content=" 分布式 ">
-  <meta name="description" content="CAP定律 | 未来可期">
+  <title>个人介绍 | 未来可期</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="个人介绍 | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="什么是桥接模式？ 桥接模式即将类的功能层次结构与实现层次结构分离。 作用是在类的功能层次结构和类的实现层次结构之间搭建桥梁 当想要增加功能时，只需要在类的功能层次结构一侧添加类即可，不必对类的实现层次结构做任何修改。而且，增加后的功能可以被所有的实现使用  示范代码(golang)画一个红色圆型和黄色圆型 1234567891011121314151617181920212223242526272">
 <meta property="og:type" content="article">
@@ -409,34 +409,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-go-micro/CAP定律" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CAP定律</h1>
+        <h1 class="article-title">个人介绍</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="分布式">分布式</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color4">分布式</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 18:47:24'>2020-08-06 18:43</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:14:12'>2020-04-17 00:02</time>
         
     </div>
     <div class="article-meta">
@@ -458,7 +443,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chiachan"><span class="toc-text">Chiachan</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#个人信息"><span class="toc-text">个人信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技能树"><span class="toc-text">技能树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目经验"><span class="toc-text">项目经验</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -474,12 +459,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。</p>
-<p>CAP理解：</p>
-<ul>
-<li>Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same data at the same time）。</li>
-<li>Availability：高可用性就是在任何时候都可以读写（Reads and writes always succeed）。</li>
-<li>Partition Tolerance：分区容错性是在网络故障、某些节点不能通信的时候系统仍能继续工作（The system continue to operate despite arbitrary message loss or failure of part of the the system）。以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。</li>
+        <h1 id="Chiachan"><a href="#Chiachan" class="headerlink" title="Chiachan"></a>Chiachan</h1><h3 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h3><ul>
+<li>学历：本科(统招)</li>
+<li>专业：计算机科学与技术</li>
+<li>学校：广州航海学院</li>
+<li>证书：软件设计师(中级)、NISP一级</li>
+</ul>
+<h3 id="技能树"><a href="#技能树" class="headerlink" title="技能树"></a>技能树</h3><table>
+<thead>
+<tr>
+<th align="left">item</th>
+<th align="left">content</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">language</td>
+<td align="left">golang、java</td>
+</tr>
+<tr>
+<td align="left">sql</td>
+<td align="left">mysql、mongodb、redis</td>
+</tr>
+<tr>
+<td align="left">mq</td>
+<td align="left">kafka、rabbitmq</td>
+</tr>
+<tr>
+<td align="left">design</td>
+<td align="left">常见设计模式</td>
+</tr>
+<tr>
+<td align="left">special</td>
+<td align="left">数学思路解决复杂数据问题或提高性能效率</td>
+</tr>
+</tbody></table>
+<h3 id="项目经验"><a href="#项目经验" class="headerlink" title="项目经验"></a>项目经验</h3><ul>
+<li>搜索引擎(java+elasticsearch+ik+vue)</li>
+<li>产品后台开发(vue+golang)</li>
+<li>h5游戏后端开发(golang+ws)</li>
+<li>钉钉h5微应用Sass(golang+react+ws)</li>
 </ul>
 
       

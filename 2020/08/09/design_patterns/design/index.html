@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CAP定律 | 未来可期</title>
-  <meta name="keywords" content=" 分布式 ">
-  <meta name="description" content="CAP定律 | 未来可期">
+  <title>什么是设计模式 | 未来可期</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="什么是设计模式 | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="什么是桥接模式？ 桥接模式即将类的功能层次结构与实现层次结构分离。 作用是在类的功能层次结构和类的实现层次结构之间搭建桥梁 当想要增加功能时，只需要在类的功能层次结构一侧添加类即可，不必对类的实现层次结构做任何修改。而且，增加后的功能可以被所有的实现使用  示范代码(golang)画一个红色圆型和黄色圆型 1234567891011121314151617181920212223242526272">
 <meta property="og:type" content="article">
@@ -409,9 +409,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-go-micro/CAP定律" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/design" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CAP定律</h1>
+        <h1 class="article-title">什么是设计模式</h1>
     
     <div class="article-meta">
         
@@ -421,7 +421,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="分布式">分布式</a>
+            <a  data-rel="设计模式">设计模式</a>
             
         </span>
         
@@ -429,14 +429,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">分布式</a>
+            <a class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 18:47:24'>2020-08-06 18:43</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-09 22:35:05'>2020-08-09 22:05</time>
         
     </div>
     <div class="article-meta">
@@ -458,7 +458,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是设计模式？"><span class="toc-text">什么是设计模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式的目标"><span class="toc-text">设计模式的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象的三大特征"><span class="toc-text">面向对象的三大特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式六大原则"><span class="toc-text">设计模式六大原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式列表"><span class="toc-text">设计模式列表</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -474,12 +474,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。</p>
-<p>CAP理解：</p>
-<ul>
-<li>Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same data at the same time）。</li>
-<li>Availability：高可用性就是在任何时候都可以读写（Reads and writes always succeed）。</li>
-<li>Partition Tolerance：分区容错性是在网络故障、某些节点不能通信的时候系统仍能继续工作（The system continue to operate despite arbitrary message loss or failure of part of the the system）。以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。</li>
+        <h2 id="什么是设计模式？"><a href="#什么是设计模式？" class="headerlink" title="什么是设计模式？"></a>什么是设计模式？</h2><p>设计模式：描述软件设计过程中某一类常见问题的一般性的解决方案<br>设计模式是用来表现内部组件是如何被组装的，以及每一个组件是如何通过相互关联来构成一个庞大系统的。</p>
+<h2 id="设计模式的目标"><a href="#设计模式的目标" class="headerlink" title="设计模式的目标"></a>设计模式的目标</h2><ul>
+<li>正确性</li>
+<li>健壮性</li>
+<li>灵活性</li>
+<li>可重用性</li>
+<li>高效性</li>
+</ul>
+<h2 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h2><ul>
+<li>继承性</li>
+<li>封装性</li>
+<li>多态性</li>
+</ul>
+<h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><p>1.单一原则（Single Responsibility Principle）<br>    - 定义：一个类或者一个方法只负责一项职责，尽量做到类的只有一个行为原因引起变化；<br>    - 特点：高内聚、低耦合<br>2.里氏替换原则（LSP liskov substitution principle）<br>    - 定义：子类可以扩展父类的功能，但不能改变原有父类的功能；（本质就是多态）<br>    - 特点：一个基类对象替换成它的子类对象，程序将不会产生任何错误和异常，反过来则不成立<br>3.依赖倒置原则（dependence inversion principle）<br>    - 定义：抽象不应该依赖于细节，细节应当依赖于抽象，要针对接口编程，而不是针对实现编程。<br>    - 抽象就是接口或者抽象类，细节就是实现类<br>    - 上层模块不应该依赖下层模块，两者应依赖其抽象；<br>    - 抽象不应该依赖细节，细节应该依赖抽象；<br>    - 通俗点就是说变量或者传参数，尽量使用抽象类，或者接口；<br>    - 【接口负责定义public属性和方法，并且申明与其他对象依赖关系，抽象类负责公共构造部分的实现，实现类准确的实现业务逻辑】<br>4.接口隔离（interface segregation principle）<br>    - 定义：使用多个专门的接口，而不使用单一的总接口，客户端不应该依赖它不需要的接口<br>    - 类之间依赖关系应该建立在最小的接口上<br>    - 简单理解：复杂的接口，根据业务拆分成多个简单接口<br>    - 【接口的设计粒度越小，系统越灵活，但是灵活的同时结构复杂性提高，开发难度也会变大，维护性降低】　　　<br>5.迪米特原则（law of demeter LOD）<br>    - 定义：也称最少知道原则，一个软件实体应当尽可能少地与其他实体发生相互作用。<br>    - 尽量降低类与类之间的耦合；<br>    - 一个对象应该对其他对象有最少的了解<br>6.开闭原则（open closed principle）<br>    - 定义：一个类应当对扩展开放，对修改关闭，应尽量在不修改原有代码的情况下进行扩展。<br>    - 特点：在拥有适应性和灵活性同时，具备较好的稳定性和延续性<br>    - 抽象化是开闭原则的关键</p>
+<h2 id="设计模式列表"><a href="#设计模式列表" class="headerlink" title="设计模式列表"></a>设计模式列表</h2><ul>
+<li>迭代器模式(Iterator模式)</li>
+<li>适配器模式(Adapter模式)</li>
+<li>模板模式(Template Method模式)</li>
+<li>工厂方法模式(Factory Method模式)</li>
+<li>单例模式(Singleton模式)</li>
+<li>原型模式(Prototype模式)</li>
+<li>建造模式(Builder模式)</li>
+<li>抽象工厂模式(Adstract Factory模式)</li>
+<li>桥接模式(Bridge模式)</li>
+<li>策略模式(Strategy模式)</li>
+<li>组合模式(Composite模式)</li>
+<li>装饰模式(Decorator模式)</li>
+<li>访问者模式(Visitor模式)</li>
+<li>职责链模式(Chain Responsibility模式)</li>
+<li>外观模式(Facade模式)</li>
+<li>中介者模式(Mediator模式)</li>
+<li>观察者模式(Observer模式)</li>
+<li>备忘录模式(Memento模式)</li>
+<li>状态模式(State模式)</li>
+<li>享元模式(Flyweight模式)</li>
+<li>代理模式(Proxy模式)</li>
+<li>命令模式(Command模式)</li>
+<li>解释器模式(Interpreter模式)</li>
 </ul>
 
       

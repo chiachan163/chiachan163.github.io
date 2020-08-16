@@ -6,25 +6,23 @@
   <meta name="keywords" content=" golang , tp-micro ">
   <meta name="description" content="go module折腾笔记(tp-micro) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。 CAP理解：  Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same">
+<meta name="description" content="什么是桥接模式？ 桥接模式即将类的功能层次结构与实现层次结构分离。 作用是在类的功能层次结构和类的实现层次结构之间搭建桥梁 当想要增加功能时，只需要在类的功能层次结构一侧添加类即可，不必对类的实现层次结构做任何修改。而且，增加后的功能可以被所有的实现使用  示范代码(golang)画一个红色圆型和黄色圆型 1234567891011121314151617181920212223242526272">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CAP定律">
-<meta property="og:url" content="https://chiachan163.github.io/2020/08/06/go-micro/CAP%E5%AE%9A%E5%BE%8B/index.html">
+<meta property="og:title" content="Bridge模式(桥接模式)">
+<meta property="og:url" content="https://chiachan163.github.io/2020/08/16/design_patterns/bridge/index.html">
 <meta property="og:site_name" content="未来可期">
-<meta property="og:description" content="在分布式系统中，同时满足CAP定律中的一致性 Consistency、可用性 Availability和分区容错性 Partition Tolerance三者是不可能的。在绝大多数的场景，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证最终一致性。 CAP理解：  Consistency：强一致性就是在客户端任何时候看到各节点的数据都是一致的（All nodes see the same">
+<meta property="og:description" content="什么是桥接模式？ 桥接模式即将类的功能层次结构与实现层次结构分离。 作用是在类的功能层次结构和类的实现层次结构之间搭建桥梁 当想要增加功能时，只需要在类的功能层次结构一侧添加类即可，不必对类的实现层次结构做任何修改。而且，增加后的功能可以被所有的实现使用  示范代码(golang)画一个红色圆型和黄色圆型 1234567891011121314151617181920212223242526272">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-06T10:43:52.000Z">
-<meta property="article:modified_time" content="2020-08-06T10:47:24.590Z">
+<meta property="article:published_time" content="2020-08-16T15:11:13.000Z">
+<meta property="article:modified_time" content="2020-08-16T15:12:16.383Z">
 <meta property="article:author" content="chiachan163">
-<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="chiachan">
 <meta name="twitter:card" content="summary">
 
 
 <link rel="icon" href="https://chiachan163.github.io/img/avatar.png">
 
 <link href="/css/style.css?v=1.1.0" rel="stylesheet">
-
-<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
 
 <link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
 
@@ -129,19 +127,31 @@
 
 
 <ul>
-    <li><div class="all active" data-rel="全部文章">全部文章<small>(6)</small></div></li>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(12)</small></div></li>
     
         
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
             
         
     
         
             
-            <li><div data-rel="golang"><i class="fold iconfont icon-right"></i>golang<small>(5)</small></div>
+        
+    
+        
+            
+            <li><div data-rel="golang"><i class="fold iconfont icon-right"></i>golang<small>(6)</small></div>
                 
                     <ul class="sub hide">
                         
-                        <li><div data-rel="golang<--->go-micro">go-micro<small>(1)</small></div>
+                        <li><div data-rel="golang<--->go-micro">go-micro<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="golang<--->tp-micro">tp-micro<small>(3)</small></div>
                             
                         </li>
                             
@@ -153,7 +163,39 @@
     
         
             
+        
+    
+        
+            
+            <li><div data-rel="network"><i class="fold iconfont icon-right"></i>network<small>(1)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="network<--->http">http<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
             <li><div data-rel="分布式">分布式<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="设计模式">设计模式<small>(1)</small></div>
                 
             </li>
             
@@ -169,7 +211,7 @@
     </div>
     <div><a class="about  " target="_blank" href="/about">博主简介</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="6">
+<input type="hidden" id="yelog_site_posts_number" value="12">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -216,11 +258,23 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>etcd</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>go-micro</a>
             </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>golang</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>http</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -231,12 +285,64 @@
                 <i class="iconfont icon-tag"></i><a>分布式</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
     </div>
 
 </div>
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 "
+           href="/2020/08/16/design_patterns/bridge/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Bridge模式(桥接模式)">Bridge模式(桥接模式)</span>
+            <span class="post-date" title="2020-08-16 23:11:13">2020/08/16</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2020/08/09/design_patterns/iterator/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Interator模式(迭代器模式)">Interator模式(迭代器模式)</span>
+            <span class="post-date" title="2020-08-09 22:35:47">2020/08/09</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2020/08/09/design_patterns/design/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="什么是设计模式">什么是设计模式</span>
+            <span class="post-date" title="2020-08-09 22:05:19">2020/08/09</span>
+        </a>
+        
+        <a  class="全部文章 golang go-micro "
+           href="/2020/08/06/go-micro/go-micro%E4%BB%8B%E7%BB%8D/"
+           data-tag="go-micro,golang"
+           data-author="" >
+            <span class="post-title" title="2. go-micro介绍">2. go-micro介绍</span>
+            <span class="post-date" title="2020-08-06 23:36:55">2020/08/06</span>
+        </a>
+        
+        <a  class="全部文章 docker "
+           href="/2020/08/06/docker/etcd/"
+           data-tag="docker,etcd"
+           data-author="" >
+            <span class="post-title" title="docker-compose搭建etcd集群">docker-compose搭建etcd集群</span>
+            <span class="post-date" title="2020-08-06 19:20:13">2020/08/06</span>
+        </a>
+        
+        <a  class="全部文章 network http "
+           href="/2020/08/06/network/http%E7%8A%B6%E6%80%81%E7%A0%81/"
+           data-tag="http"
+           data-author="" >
+            <span class="post-title" title="http状态码-5xx服务器错误">http状态码-5xx服务器错误</span>
+            <span class="post-date" title="2020-08-06 19:16:55">2020/08/06</span>
+        </a>
         
         <a  class="全部文章 分布式 "
            href="/2020/08/06/go-micro/CAP%E5%AE%9A%E5%BE%8B/"
@@ -250,11 +356,11 @@
            href="/2020/08/06/go-micro/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
            data-tag="go-micro,golang"
            data-author="" >
-            <span class="post-title" title="微服务介绍">微服务介绍</span>
+            <span class="post-title" title="1. 微服务介绍">1. 微服务介绍</span>
             <span class="post-date" title="2020-08-06 18:32:56">2020/08/06</span>
         </a>
         
-        <a  class="全部文章 golang "
+        <a  class="全部文章 golang go-micro "
            href="/2020/08/03/go-micro/go-micro%E5%91%BD%E4%BB%A4%E7%BF%BB%E8%AF%91/"
            data-tag="go-micro,golang"
            data-author="" >
@@ -262,7 +368,7 @@
             <span class="post-date" title="2020-08-03 01:15:47">2020/08/03</span>
         </a>
         
-        <a  class="全部文章 golang "
+        <a  class="全部文章 golang tp-micro "
            href="/2019/12/21/tp-micro/go%20module%E7%AC%94%E8%AE%B0(tp-micro%E4%B8%8B)/"
            data-tag="golang,tp-micro"
            data-author="" >
@@ -270,7 +376,7 @@
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
-        <a  class="全部文章 golang "
+        <a  class="全部文章 golang tp-micro "
            href="/2019/12/21/tp-micro/tp-micro%20mysql/"
            data-tag="golang,tp-micro"
            data-author="" >
@@ -278,7 +384,7 @@
             <span class="post-date" title="2019-12-21 15:13:47">2019/12/21</span>
         </a>
         
-        <a  class="全部文章 golang "
+        <a  class="全部文章 golang tp-micro "
            href="/2019/12/21/tp-micro/tp-micro%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"
            data-tag="golang,tp-micro"
            data-author="" >
@@ -315,7 +421,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="golang">golang</a>
+            <a  data-rel="golang">golang</a> > 
+            
+            <a  data-rel="golang&lt;---&gt;tp-micro">tp-micro</a>
             
         </span>
         
@@ -332,7 +440,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-05 01:16:54'>2019-12-21 15:13</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:14:51'>2019-12-21 15:13</time>
         
     </div>
     <div class="article-meta">
