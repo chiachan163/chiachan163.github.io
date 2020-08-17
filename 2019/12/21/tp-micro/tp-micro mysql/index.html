@@ -24,6 +24,8 @@
 
 <link href="/css/style.css?v=1.1.0" rel="stylesheet">
 
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
 <link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -338,7 +340,7 @@
         
         <a  class="全部文章 golang go-micro "
            href="/2020/08/06/go-micro/go-micro%E4%BB%8B%E7%BB%8D/"
-           data-tag="golang,go-micro"
+           data-tag="go-micro,golang"
            data-author="" >
             <span class="post-title" title="2. go-micro介绍">2. go-micro介绍</span>
             <span class="post-date" title="2020-08-06 23:36:55">2020/08/06</span>
@@ -370,7 +372,7 @@
         
         <a  class="全部文章 golang go-micro "
            href="/2020/08/06/go-micro/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
-           data-tag="golang,go-micro"
+           data-tag="go-micro,golang"
            data-author="" >
             <span class="post-title" title="1. 微服务介绍">1. 微服务介绍</span>
             <span class="post-date" title="2020-08-06 18:32:56">2020/08/06</span>
@@ -378,7 +380,7 @@
         
         <a  class="全部文章 golang go-micro "
            href="/2020/08/03/go-micro/go-micro%E5%91%BD%E4%BB%A4%E7%BF%BB%E8%AF%91/"
-           data-tag="golang,go-micro"
+           data-tag="go-micro,golang"
            data-author="" >
             <span class="post-title" title="go-micro命令">go-micro命令</span>
             <span class="post-date" title="2020-08-03 01:15:47">2020/08/03</span>
@@ -495,22 +497,54 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="tp-micro-mysql"><a href="#tp-micro-mysql" class="headerlink" title="tp-micro mysql"></a>tp-micro mysql</h1><h2 id="非事务回调"><a href="#非事务回调" class="headerlink" title="非事务回调"></a>非事务回调</h2><ul>
-<li>使用方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var db, _ &#x3D; mysqlHandler.RegCacheableDB(new(Device), cacheExpire, args.DeviceSql)</span><br><span class="line">db.Callback(func(tx sqlx.DbOrTx) error &#123;</span><br><span class="line">		...(执行)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>使用方式<pre><code>var db, _ = mysqlHandler.RegCacheableDB(new(Device), cacheExpire, args.DeviceSql)
+db.Callback(func(tx sqlx.DbOrTx) error {
+      ...(执行)
+  }</code></pre></li>
 </ul>
 <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><ul>
-<li>使用方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.GetMysqlDB().TransactCallback(func(tx *sqlx.Tx) error &#123;</span><br><span class="line">		...(执行)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>使用方式<pre><code>model.GetMysqlDB().TransactCallback(func(tx *sqlx.Tx) error {
+      ...(执行)
+  })</code></pre></li>
 </ul>
 <h2 id="非事务操作会话回调"><a href="#非事务操作会话回调" class="headerlink" title="非事务操作会话回调"></a>非事务操作会话回调</h2><ul>
-<li>使用方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.GetMysqlDB().CallbackInSession(func(context.Context, *sqlx.Conn) error &#123;</span><br><span class="line">		...(执行)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="事务会话回调"><a href="#事务会话回调" class="headerlink" title="事务会话回调"></a>事务会话回调</h2></li>
+<li>使用方式<pre><code>model.GetMysqlDB().CallbackInSession(func(context.Context, *sqlx.Conn) error {
+      ...(执行)
+  })</code></pre><h2 id="事务会话回调"><a href="#事务会话回调" class="headerlink" title="事务会话回调"></a>事务会话回调</h2></li>
 <li>函数文件位置:tp-micrp/model/mysql/db.go</li>
-<li>使用方式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">err :&#x3D; model.GetMysqlDB().TransactCallbackInSession(func(ctx context.Context, tx *sqlx.Tx) (err error) &#123;</span><br><span class="line">	...(此处执行事务处理)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>使用方式：<pre><code>err := model.GetMysqlDB().TransactCallbackInSession(func(ctx context.Context, tx *sqlx.Tx) (err error) {
+  ...(此处执行事务处理)
+})</code></pre></li>
 <li>函数逻辑:begin-&gt;commit 或 begin-&gt;rollback</li>
-<li>源码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; TransactCallbackInSession transactional operations in one session.</span><br><span class="line">&#x2F;&#x2F; nOTE: if an error is returned, the rollback method should be invoked outside the function.</span><br><span class="line">func (d *DB) TransactCallbackInSession(fn func(context.Context, *sqlx.Tx) error, ctx ...context.Context) (err error) &#123;</span><br><span class="line">	if fn &#x3D;&#x3D; nil &#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	var _ctx &#x3D; context.Background()</span><br><span class="line">	if len(ctx) &gt; 0 &#123;</span><br><span class="line">		_ctx &#x3D; ctx[0]</span><br><span class="line">	&#125;</span><br><span class="line">	conn, err :&#x3D; d.Conn(_ctx)</span><br><span class="line">	if err !&#x3D; nil &#123;</span><br><span class="line">		return err</span><br><span class="line">	&#125;</span><br><span class="line">	defer conn.Close()</span><br><span class="line">	_tx, err :&#x3D; conn.Beginx()</span><br><span class="line">	if err !&#x3D; nil &#123;</span><br><span class="line">		return err</span><br><span class="line">	&#125;</span><br><span class="line">	defer func() &#123;</span><br><span class="line">		if err !&#x3D; nil &#123;</span><br><span class="line">			_tx.Rollback()</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			_tx.Commit()</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	err &#x3D; fn(_ctx, _tx)</span><br><span class="line">	return err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>源码：<pre><code>// TransactCallbackInSession transactional operations in one session.
+// nOTE: if an error is returned, the rollback method should be invoked outside the function.
+func (d *DB) TransactCallbackInSession(fn func(context.Context, *sqlx.Tx) error, ctx ...context.Context) (err error) {
+  if fn == nil {
+      return
+  }
+  var _ctx = context.Background()
+  if len(ctx) &gt; 0 {
+      _ctx = ctx[0]
+  }
+  conn, err := d.Conn(_ctx)
+  if err != nil {
+      return err
+  }
+  defer conn.Close()
+  _tx, err := conn.Beginx()
+  if err != nil {
+      return err
+  }
+  defer func() {
+      if err != nil {
+          _tx.Rollback()
+      } else {
+          _tx.Commit()
+      }
+  }()
+  err = fn(_ctx, _tx)
+  return err
+}</code></pre></li>
 </ul>
 
       

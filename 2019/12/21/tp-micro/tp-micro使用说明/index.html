@@ -24,6 +24,8 @@
 
 <link href="/css/style.css?v=1.1.0" rel="stylesheet">
 
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
 <link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -338,7 +340,7 @@
         
         <a  class="全部文章 golang go-micro "
            href="/2020/08/06/go-micro/go-micro%E4%BB%8B%E7%BB%8D/"
-           data-tag="golang,go-micro"
+           data-tag="go-micro,golang"
            data-author="" >
             <span class="post-title" title="2. go-micro介绍">2. go-micro介绍</span>
             <span class="post-date" title="2020-08-06 23:36:55">2020/08/06</span>
@@ -370,7 +372,7 @@
         
         <a  class="全部文章 golang go-micro "
            href="/2020/08/06/go-micro/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"
-           data-tag="golang,go-micro"
+           data-tag="go-micro,golang"
            data-author="" >
             <span class="post-title" title="1. 微服务介绍">1. 微服务介绍</span>
             <span class="post-date" title="2020-08-06 18:32:56">2020/08/06</span>
@@ -378,7 +380,7 @@
         
         <a  class="全部文章 golang go-micro "
            href="/2020/08/03/go-micro/go-micro%E5%91%BD%E4%BB%A4%E7%BF%BB%E8%AF%91/"
-           data-tag="golang,go-micro"
+           data-tag="go-micro,golang"
            data-author="" >
             <span class="post-title" title="go-micro命令">go-micro命令</span>
             <span class="post-date" title="2020-08-03 01:15:47">2020/08/03</span>
@@ -547,35 +549,59 @@
 <li>pull接口即需要返回数据</li>
 <li>规范定义：<ul>
 <li>定义接口以<code>版本_模块_接口</code>，如V1_Home_GetById</li>
-<li>生成对应接口路径即<code>/v1/home/get_by_id</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">type __API_PULL__ interface &#123;</span><br><span class="line">	V1_Home</span><br><span class="line">&#125;</span><br><span class="line">type V1_Home interface &#123;</span><br><span class="line">	GetById(*GetByIdArgV1) *GetByIdResultV1</span><br><span class="line">&#125;</span><br><span class="line">type (</span><br><span class="line">	GetByIdArgV1 struct &#123;</span><br><span class="line">		id       int32</span><br><span class="line">	&#125;</span><br><span class="line">	GetByIdResultV1 struct &#123;</span><br><span class="line">		id int32</span><br><span class="line">		username string</span><br><span class="line">	&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>生成对应接口路径即<code>/v1/home/get_by_id</code><pre><code>type __API_PULL__ interface {
+  V1_Home
+}
+type V1_Home interface {
+  GetById(*GetByIdArgV1) *GetByIdResultV1
+}
+type (
+  GetByIdArgV1 struct {
+      id       int32
+  }
+  GetByIdResultV1 struct {
+      id int32
+      username string
+  }
+)</code></pre></li>
 </ul>
 </li>
 </ul>
 <h4 id="type-API-PUSH-interface"><a href="#type-API-PUSH-interface" class="headerlink" title="type API_PUSH interface"></a>type <strong>API_PUSH</strong> interface</h4><ul>
 <li>push接口自动生成</li>
 <li>push接口即没有返回数据</li>
-<li>规范定义：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type __API_PUSH__ interface &#123;</span><br><span class="line">&#x2F;&#x2F; 订阅推送</span><br><span class="line">	V1_Subscribe(*V1_SubscribeArg)</span><br><span class="line">&#125;</span><br><span class="line">type V1_SubscribeArg struct &#123;</span><br><span class="line">	SessionId string &#96;json:&quot;session_id&quot;&#96; &#x2F;&#x2F;uid</span><br><span class="line">	Event     string &#96;json:&quot;event&quot;&#96;      &#x2F;&#x2F;上下线状态</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>规范定义：<pre><code>  type __API_PUSH__ interface {
+  // 订阅推送
+      V1_Subscribe(*V1_SubscribeArg)
+  }
+  type V1_SubscribeArg struct {
+      SessionId string `json:&quot;session_id&quot;` //uid
+      Event     string `json:&quot;event&quot;`      //上下线状态
+  }</code></pre></li>
 </ul>
 <h4 id="type-MYSQL-MODEL-struct"><a href="#type-MYSQL-MODEL-struct" class="headerlink" title="type MYSQL_MODEL struct"></a>type <strong>MYSQL_MODEL</strong> struct</h4><ul>
 <li>mysql自动生成Model文件</li>
 <li><code>key:&quot;pri&quot;</code>表示主键，<code>key:&quot;uni&quot;</code>表示唯一索引</li>
 <li>添加这两个表示，会自动生成相关操作的函数</li>
-<li>规范定义：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type __MYSQL_MODEL__ struct &#123;</span><br><span class="line">	User</span><br><span class="line">&#125;</span><br><span class="line">type User struct &#123;</span><br><span class="line">	Id   int64  &#96;key:&quot;pri&quot;&#96;</span><br><span class="line">	Username string &#96;key:&quot;uni&quot;&#96;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>规范定义：<pre><code>  type __MYSQL_MODEL__ struct {
+      User
+  }
+  type User struct {
+      Id   int64  `key:&quot;pri&quot;`
+      Username string `key:&quot;uni&quot;`
+  }</code></pre></li>
 </ul>
 <h4 id="type-MONGO-MODEL-struct"><a href="#type-MONGO-MODEL-struct" class="headerlink" title="type MONGO_MODEL struct"></a>type <strong>MONGO_MODEL</strong> struct</h4><ul>
 <li>mongo自动生成Model文件</li>
 <li><code>key:&quot;pri&quot;</code>表示主键，<code>key:&quot;uni&quot;</code>表示唯一索引</li>
 <li>添加这两个表示，会自动生成相关操作的函数</li>
-<li>规范定义：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type __MONGO_MODEL__ struct &#123;</span><br><span class="line">	UserMeta</span><br><span class="line">&#125;</span><br><span class="line">type UserMeta struct &#123;</span><br><span class="line">	Id   int64  &#96;key:&quot;pri&quot;&#96;</span><br><span class="line">	Username string &#96;key:&quot;uni&quot;&#96;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>规范定义：<pre><code>  type __MONGO_MODEL__ struct {
+      UserMeta
+  }
+  type UserMeta struct {
+      Id   int64  `key:&quot;pri&quot;`
+      Username string `key:&quot;uni&quot;`
+  }</code></pre></li>
 </ul>
 <h2 id="三、接口管理"><a href="#三、接口管理" class="headerlink" title="三、接口管理"></a>三、接口管理</h2><h4 id="pull-handler-gen-go"><a href="#pull-handler-gen-go" class="headerlink" title="pull_handler.gen.go"></a>pull_handler.gen.go</h4><ul>
 <li>pull方式接口(即有返回数据)</li>
@@ -597,9 +623,21 @@
 <li>如果需要对客户端参数进行修改，复制rpc.gen.go对应的接口，到该文件下进行修改即可</li>
 </ul>
 <h2 id="六、项目初始化"><a href="#六、项目初始化" class="headerlink" title="六、项目初始化"></a>六、项目初始化</h2><h4 id="config-go"><a href="#config-go" class="headerlink" title="config.go"></a>config.go</h4><h5 id="1-type-config-struct"><a href="#1-type-config-struct" class="headerlink" title="1. type config struct"></a>1. type config struct</h5><ul>
-<li>读取配置文件config/config.yaml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var cfg &#x3D; &amp;config&#123;</span><br><span class="line">	Srv: micro.SrvConfig&#123;</span><br><span class="line">		ListenAddress:     &quot;:0&quot;,</span><br><span class="line">		EnableHeartbeat:   true,</span><br><span class="line">		PrintDetail:       true,</span><br><span class="line">		CountTime:         true,</span><br><span class="line">		SlowCometDuration: time.Millisecond * 500,</span><br><span class="line">	&#125;,</span><br><span class="line">	Etcd: etcd.EasyConfig&#123;</span><br><span class="line">		Endpoints: []string&#123;&quot;http:&#x2F;&#x2F;127.0.0.1:2379&quot;&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">	Redis:       *redis.NewConfig(),</span><br><span class="line">	CacheExpire: time.Hour * 24,</span><br><span class="line">	LogLevel:    &quot;TRACE&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>读取配置文件config/config.yaml<pre><code>var cfg = &amp;config{
+  Srv: micro.SrvConfig{
+      ListenAddress:     &quot;:0&quot;,
+      EnableHeartbeat:   true,
+      PrintDetail:       true,
+      CountTime:         true,
+      SlowCometDuration: time.Millisecond * 500,
+  },
+  Etcd: etcd.EasyConfig{
+      Endpoints: []string{&quot;http://127.0.0.1:2379&quot;},
+  },
+  Redis:       *redis.NewConfig(),
+  CacheExpire: time.Hour * 24,
+  LogLevel:    &quot;TRACE&quot;,
+}</code></pre></li>
 </ul>
 <h5 id="2-c-config-Reload-bind-cfgo-BindFunc"><a href="#2-c-config-Reload-bind-cfgo-BindFunc" class="headerlink" title="2. (c *config) Reload(bind cfgo.BindFunc)"></a>2. (c *config) Reload(bind cfgo.BindFunc)</h5><ul>
 <li>执行配置加载</li>
@@ -608,7 +646,7 @@
 <li>初始化配置</li>
 </ul>
 <h2 id="七、Mysql逆向工程"><a href="#七、Mysql逆向工程" class="headerlink" title="七、Mysql逆向工程"></a>七、Mysql逆向工程</h2><ul>
-<li>在数据库中建好数据库数据表，执行以下命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">micro tpl -host [ip] -port [3306] -username qas -password [password] -db [DBName] -table [TableName] -ssh_user cds -ssh_host [跳板机地址] -ssh_port 38390</span><br></pre></td></tr></table></figure></li>
+<li>在数据库中建好数据库数据表，执行以下命令<pre><code>micro tpl -host [ip] -port [3306] -username qas -password [password] -db [DBName] -table [TableName] -ssh_user cds -ssh_host [跳板机地址] -ssh_port 38390</code></pre></li>
 <li>命令执行后，会自动在模板文件中添加数据表结构生成结构，再执行micro gen生成model文件即可</li>
 </ul>
 <h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ul>
