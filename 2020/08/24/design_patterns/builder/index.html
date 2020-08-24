@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bridge模式(桥接模式) | 未来可期</title>
+  <title>Builder模式(建造者模式) | 未来可期</title>
   <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="Bridge模式(桥接模式) | 未来可期">
+  <meta name="description" content="Builder模式(建造者模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Chiachan个人信息 学历：本科(统招) 专业：计算机科学与技术 学校：广州航海学院 证书：软件设计师(中级)、NISP一级  技能树   item content    language golang、java   sql mysql、mongodb、redis   mq kafka、rabbitmq   design 常见设计模式   special 数学思路解决复杂数据问题或提高性能效率">
 <meta property="og:type" content="website">
@@ -459,9 +459,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-design_patterns/bridge" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/builder" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Bridge模式(桥接模式)</h1>
+        <h1 class="article-title">Builder模式(建造者模式)</h1>
     
     <div class="article-meta">
         
@@ -486,7 +486,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-18 01:13:47'>2020-08-16 23:11</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-24 23:38:48'>2020-08-24 23:38</time>
         
     </div>
     <div class="article-meta">
@@ -508,7 +508,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是桥接模式？"><span class="toc-text">什么是桥接模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是建造者模式？"><span class="toc-text">什么是建造者模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -524,80 +524,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是桥接模式？"><a href="#什么是桥接模式？" class="headerlink" title="什么是桥接模式？"></a>什么是桥接模式？</h2><ul>
-<li>桥接模式即将类的功能层次结构与实现层次结构分离。</li>
-<li>作用是在类的功能层次结构和类的实现层次结构之间搭建桥梁</li>
-<li>当想要增加功能时，只需要在类的功能层次结构一侧添加类即可，不必对类的实现层次结构做任何修改。而且，增加后的功能可以被所有的实现使用</li>
+        <h2 id="什么是建造者模式？"><a href="#什么是建造者模式？" class="headerlink" title="什么是建造者模式？"></a>什么是建造者模式？</h2><ul>
+<li>建造者模式即组装复杂的实例</li>
+<li>时刻关注可替换性</li>
 </ul>
-<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><p>画一个红色圆型和黄色圆型</p>
-<pre><code>package Bridge
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><pre><code class="go">package Builder
 
-import (
-    &quot;fmt&quot;
-)
-
-type Draw interface {
-    DrawCircle(radius, x, y int)
+// 建造者
+type Builder interface {
+    builderPart1()
+    builderPart2()
+    builderPart3()
 }
 
-type RedCircle struct {
-    Draw
+// 建工
+type Director struct {
+    builder Builder
 }
 
-func (g *RedCircle) DrawCircle(radius, x, y int) {
-    fmt.Printf(&quot;color:red\nradius:%d\nx:%d\ny:%d\n&quot;, radius, x, y)
+func NewDirector(builder Builder) Director {
+    return Director{builder: builder}
 }
 
-type YellowCircle struct {
-    Draw
+func (d *Director) construct() {
+    d.builder.builderPart1()
+    d.builder.builderPart2()
+    d.builder.builderPart3()
 }
 
-func (g *YellowCircle) DrawCircle(radius, x, y int) {
-    fmt.Printf(&quot;color:yellow\nradius:%d\nx:%d\ny:%d\n&quot;, radius, x, y)
+// 具体的建造者
+type ConcreteBuilder struct {
+    index int64
 }
 
-type Shape struct {
-    draw Draw
-    Shape func(Draw)
+func NewConcreteBuilder() *ConcreteBuilder {
+    return &amp;ConcreteBuilder{index: 0}
 }
 
-func (s *Shape) Shape(d Draw) {
-    s.draw = d
+func (c *ConcreteBuilder) builderPart1() {
+    c.index = c.index + 1
 }
-
-type Circle struct {
-    shape  Shape
-    x      int
-    y      int
-    radius int
+func (c *ConcreteBuilder) builderPart2() {
+    c.index = c.index + 2
 }
-
-func (c *Circle) Constructor(x int, y int, radius int, draw Draw) {
-    c.x = x
-    c.y = y
-    c.radius = radius
-    c.shape.Shape(draw)
+func (c *ConcreteBuilder) builderPart3() {
+    c.index = c.index + 3
 }
-
-func (c *Circle) Cook() {
-    c.shape.draw.DrawCircle(c.radius, c.x, c.y)
-}</code></pre><pre><code>package Bridge
+func (c *ConcreteBuilder) getResult() int64 {
+    return c.index
+}</code></pre>
+<pre><code class="go">package Builder
 
 import (
     &quot;fmt&quot;
     &quot;testing&quot;
 )
 
-func TestCircle_Cook(t *testing.T) {
-    redCircle := Circle{}
-    redCircle.Constructor(0, 10, 5, &amp;RedCircle{})
-    yellowCicle := Circle{}
-    yellowCicle.Constructor(10, 0, 5, &amp;YellowCircle{})
-    redCircle.Cook()
-    fmt.Println()
-    yellowCicle.Cook()
+func TestNewConcreteBuilder(t *testing.T) {
+    concreteBuilder := NewConcreteBuilder()
+    director := NewDirector(concreteBuilder)
+    director.construct()
+    fmt.Println(concreteBuilder.getResult())
 }
 </code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
     </div>
