@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>1. 微服务介绍 | 未来可期</title>
-  <meta name="keywords" content=" golang , go-micro ">
-  <meta name="description" content="1. 微服务介绍 | 未来可期">
+  <title>Abstract Factory模式(抽象工厂模式) | 未来可期</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="Abstract Factory模式(抽象工厂模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Chiachan个人信息 学历：本科(统招) 专业：计算机科学与技术 学校：广州航海学院 证书：软件设计师(中级)、NISP一级  技能树   item content    language golang、java   sql mysql、mongodb、redis   mq kafka、rabbitmq   design 常见设计模式   special 数学思路解决复杂数据问题或提高性能效率">
 <meta property="og:type" content="website">
@@ -467,9 +467,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-go-micro/微服务" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/abstract_factory" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">1. 微服务介绍</h1>
+        <h1 class="article-title">Abstract Factory模式(抽象工厂模式)</h1>
     
     <div class="article-meta">
         
@@ -479,9 +479,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="golang">golang</a> > 
-            
-            <a  data-rel="golang&lt;---&gt;go-micro">go-micro</a>
+            <a  data-rel="设计模式">设计模式</a>
             
         </span>
         
@@ -489,16 +487,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">golang</a>
-            
-            <a class="color4">go-micro</a>
+            <a class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 23:38:01'>2020-08-06 18:32</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-28 01:51:32'>2020-08-28 01:45</time>
         
     </div>
     <div class="article-meta">
@@ -520,7 +516,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是微服务？"><span class="toc-text">什么是微服务？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要微服务？"><span class="toc-text">为什么需要微服务？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是抽象工厂模式？"><span class="toc-text">什么是抽象工厂模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -536,26 +532,103 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是微服务？"><a href="#什么是微服务？" class="headerlink" title="什么是微服务？"></a>什么是微服务？</h2><p>微服务是一种软件架构模式，用于将大型整体应用程序分解为更小的可管理独立服务，这些独立服务通过跨语言的协议进行通信，每个服务都专注于做好一件事情。<br>微服务架构的理念：</p>
-<ul>
-<li>这些服务是很小的,作为一个单一的商业目的的细粒度，类似unix哲学的“做一件事，做得好”</li>
-<li>组织文化应该包含部署和测试的自动化。这减轻了管理和运维的负担。</li>
-<li>文化和设计原则应该包含失败和错误，类似于抗脆弱的系统。</li>
+        <h2 id="什么是抽象工厂模式？"><a href="#什么是抽象工厂模式？" class="headerlink" title="什么是抽象工厂模式？"></a>什么是抽象工厂模式？</h2><ul>
+<li>抽象工厂模式即将关联零件组装成产品</li>
+<li>将抽象零件组装成为抽象产品 </li>
 </ul>
-<h2 id="为什么需要微服务？"><a href="#为什么需要微服务？" class="headerlink" title="为什么需要微服务？"></a>为什么需要微服务？</h2><ul>
-<li>随着组织规模技术和人数的增长，管理单一代码库变得更加困难。微服务可以将大型的应用程序分解成更小的服务，这些服务可以由许多不同的团队分别管理。每个团队负责由许多可独立于其他团队部署的微服务组成的业务功能。</li>
-<li>微服务系统可以缩短开发周期，提高生产力和优越的可扩展系统</li>
-<li>微服务的好处：<ul>
-<li>更容易扩展开发 - 团队围绕不同的业务需求组织管理自己的服务。</li>
-<li>更容易理解 - 微服务要小得多，通常为1000 LOC或更少。</li>
-<li>更容易频繁地部署新版本的服务 - 可以部署，缩放和独立管理服务。</li>
-<li>改进的容错和隔离 - 关注分离可以最大限度地减少一个服务中的问题对另一个服务的影响。</li>
-<li>提高执行速度 - 团队通过独立开发，部署和管理微服务来更快地实现业务需求。</li>
-<li>可重复使用的服务和快速原型 - 微服务中的unix理念使您能够重用现有服务，并更快地构建全新的功能。</li>
-</ul>
-</li>
-</ul>
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><p>新建一个零食工厂</p>
+<pre><code>package Abstract_Factory
 
+import &quot;fmt&quot;
+
+// 创建一个工厂，生成饮料、零食
+
+// 抽象产品
+type Product interface {
+    Name() string
+}
+
+func NewDrink(name string) *Drink {
+    return &amp;Drink{name: name}
+}
+
+// 具体产品 饮料
+type Drink struct {
+    name string
+}
+
+func (d *Drink) Name() string {
+    return d.name
+}
+
+func NewSnack(name string) *Snack {
+    return &amp;Snack{name: name}
+}
+
+// 具体产品 零食
+type Snack struct {
+    name string
+}
+
+func (s *Snack) Name() string {
+    return s.name
+}
+
+// 抽象工厂
+type Factory interface {
+    CreateDrink(name string)
+    CreateSnack(name string)
+    AddProduct(product Product)
+    GetProduct() []Product
+}
+
+func NewSimpleFactory() *SimpleFactory {
+    fmt.Println(&quot;新建一个零食工产&quot;)
+    return &amp;SimpleFactory{}
+}
+
+// 具体工厂 零食工厂
+type SimpleFactory struct {
+    products []Product
+}
+
+func (f *SimpleFactory) CreateDrink(name string) {
+    d := NewDrink(name)
+    fmt.Printf(&quot;生产一瓶%s\n&quot;, d.name)
+    f.AddProduct(d)
+    return
+}
+
+func (f *SimpleFactory) CreateSnack(name string) {
+    s := NewSnack(name)
+    fmt.Printf(&quot;生产一包%s\n&quot;, s.name)
+    f.AddProduct(s)
+    return
+}
+func (f *SimpleFactory) AddProduct(product Product) {
+    f.products = append(f.products, product)
+    return
+}
+
+func (f *SimpleFactory) GetProduct() []Product {
+    fmt.Println(&quot;现有产品：&quot;)
+    for index, p := range f.products {
+        fmt.Println(index+1, p.Name())
+    }
+    return f.products
+}</code></pre><pre><code>package Abstract_Factory
+
+import (
+    &quot;testing&quot;
+)
+
+func TestSimpleFactory(t *testing.T) {
+    var factory Factory = NewSimpleFactory()
+    factory.CreateDrink(&quot;苹果醋&quot;)
+    factory.CreateSnack(&quot;小熊饼干&quot;)
+    factory.GetProduct()
+}
+</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
     </div>
