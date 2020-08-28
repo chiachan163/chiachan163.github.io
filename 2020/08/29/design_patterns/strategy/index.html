@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>tp-micro使用说明 | 未来可期</title>
-  <meta name="keywords" content=" golang , tp-micro ">
-  <meta name="description" content="tp-micro使用说明 | 未来可期">
+  <title>Strategy模式(策略模式) | 未来可期</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="Strategy模式(策略模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Chiachan个人信息 学历：本科(统招) 专业：计算机科学与技术 学校：广州航海学院 证书：软件设计师(中级)、NISP一级  技能树   item content    language golang、java   sql mysql、mongodb、redis   mq kafka、rabbitmq   design 常见设计模式   special 数学思路解决复杂数据问题或提高性能效率">
 <meta property="og:type" content="website">
@@ -475,9 +475,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-tp-micro/tp-micro使用说明" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/strategy" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">tp-micro使用说明</h1>
+        <h1 class="article-title">Strategy模式(策略模式)</h1>
     
     <div class="article-meta">
         
@@ -487,9 +487,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="golang">golang</a> > 
-            
-            <a  data-rel="golang&lt;---&gt;tp-micro">tp-micro</a>
+            <a  data-rel="设计模式">设计模式</a>
             
         </span>
         
@@ -497,16 +495,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">golang</a>
-            
-            <a class="color4">tp-micro</a>
+            <a class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:15:01'>2019-12-21 15:13</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-29 02:15:49'>2020-08-29 02:14</time>
         
     </div>
     <div class="article-meta">
@@ -528,7 +524,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#tp-micro使用手册"><span class="toc-text">tp-micro使用手册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、目录结构"><span class="toc-text">一、目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、模板文件结构说明"><span class="toc-text">二、模板文件结构说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#type-API-PULL-interface"><span class="toc-text">type API_PULL interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type-API-PUSH-interface"><span class="toc-text">type API_PUSH interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type-MYSQL-MODEL-struct"><span class="toc-text">type MYSQL_MODEL struct</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type-MONGO-MODEL-struct"><span class="toc-text">type MONGO_MODEL struct</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、接口管理"><span class="toc-text">三、接口管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pull-handler-gen-go"><span class="toc-text">pull_handler.gen.go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#push-handler-gen-go"><span class="toc-text">push_handler.gen.go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、业务层"><span class="toc-text">四、业务层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tmp-code-gen-go"><span class="toc-text">tmp_code.gen.go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、内部客户端"><span class="toc-text">五、内部客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc-gen-go"><span class="toc-text">rpc.gen.go</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc-go"><span class="toc-text">rpc.go</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、项目初始化"><span class="toc-text">六、项目初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#config-go"><span class="toc-text">config.go</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-type-config-struct"><span class="toc-text">1. type config struct</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-c-config-Reload-bind-cfgo-BindFunc"><span class="toc-text">2. (c *config) Reload(bind cfgo.BindFunc)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-init"><span class="toc-text">3. init()</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、Mysql逆向工程"><span class="toc-text">七、Mysql逆向工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发流程"><span class="toc-text">开发流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附加："><span class="toc-text">附加：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插件-类似拦截器"><span class="toc-text">插件(类似拦截器)</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是策略模式？"><span class="toc-text">什么是策略模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -544,185 +540,238 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="tp-micro使用手册"><a href="#tp-micro使用手册" class="headerlink" title="tp-micro使用手册"></a>tp-micro使用手册</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><ul>
-<li><strong><em>api</em></strong>(接口管理)<ul>
-<li><code>pull_handler.gen.go</code>(pull方式接口)</li>
-<li><code>push_handler.gen.go</code>(push方式接口)</li>
-<li><code>router.gen.go</code>(自动生成route接口注册)</li>
-<li><code>router.go</code>(自定义route接口注册)</li>
+        <h2 id="什么是策略模式？"><a href="#什么是策略模式？" class="headerlink" title="什么是策略模式？"></a>什么是策略模式？</h2><ul>
+<li>策略模式即整体地替换算法</li>
+<li>能够整体地替换算法，让我们轻松地以不同的算法去解决相一个问题</li>
+<li>动态替换</li>
 </ul>
-</li>
-<li><strong><em>args</em></strong>(静态变量管理)<ul>
-<li><code>const.gen.go</code>(自动生成常量)</li>
-<li><code>const.go</code>(常量定义)</li>
-<li><code>type.gen.go</code> (自动生成结构体)</li>
-<li><code>type.go</code>(自定义结构体)</li>
-<li><code>var.go</code>(变量定义)</li>
-</ul>
-</li>
-<li><strong><em>config</em></strong>(配置文件)<ul>
-<li><code>config.yaml</code></li>
-</ul>
-</li>
-<li><strong><em>doc</em></strong>(项目文档管理)<ul>
-<li><code>APIDoc.md</code></li>
-<li><code>databases.md</code></li>
-</ul>
-</li>
-<li><strong><em>logic</em></strong>(业务层代码)<ul>
-<li>model<ul>
-<li><code>init.go</code>(数据库控制)</li>
-</ul>
-</li>
-<li><code>tmp_code.gen.go</code>(自动生成接口)</li>
-</ul>
-</li>
-<li><strong><em>rerrs</em></strong> (错误处理管理)<ul>
-<li><code>rerrs.go</code></li>
-</ul>
-</li>
-<li><strong><em>sdk</em></strong>(内部客户端)<ul>
-<li><code>rpc.gen.go</code>(自动生成客户端接口)</li>
-<li><code>rpc.gen_test.go</code>(接口测试工具)</li>
-<li><code>rpc.go</code>(自定义库互动接口)</li>
-</ul>
-</li>
-<li><code>__tp-micro__tpl__.go</code>(模板文件)</li>
-<li><code>config.go</code>(项目初始化管理)</li>
-<li><code>main.go</code>(主程序)</li>
-<li><code>README.md</code></li>
-</ul>
-<h2 id="二、模板文件结构说明"><a href="#二、模板文件结构说明" class="headerlink" title="二、模板文件结构说明"></a>二、模板文件结构说明</h2><h4 id="type-API-PULL-interface"><a href="#type-API-PULL-interface" class="headerlink" title="type API_PULL interface"></a>type <strong>API_PULL</strong> interface</h4><ul>
-<li>pull接口自动生成</li>
-<li>pull接口即需要返回数据</li>
-<li>规范定义：<ul>
-<li>定义接口以<code>版本_模块_接口</code>，如V1_Home_GetById</li>
-<li>生成对应接口路径即<code>/v1/home/get_by_id</code><pre><code>type __API_PULL__ interface {
-  V1_Home
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><p>猜拳游戏</p>
+<pre><code class="go">package Strategy
+
+import (
+    &quot;fmt&quot;
+    &quot;math/rand&quot;
+    &quot;time&quot;
+)
+
+const (
+    // 石头
+    HANDVALUE_GUU int = 0
+    // 剪刀
+    HANDVALUE_CHO int = 1
+    // 布
+    HANDVALUE_PAA int = 2
+)
+
+var (
+    hands = []*Hand{
+        NewHand(HANDVALUE_GUU),
+        NewHand(HANDVALUE_CHO),
+        NewHand(HANDVALUE_PAA),
+    }
+    names = []string{
+        &quot;石头&quot;,
+        &quot;剪刀&quot;,
+        &quot;布&quot;,
+    }
+)
+
+type Hand struct {
+    handvalue int
 }
-type V1_Home interface {
-  GetById(*GetByIdArgV1) *GetByIdResultV1
+
+func NewHand(handvalue int) *Hand {
+    return &amp;Hand{handvalue: handvalue}
 }
-type (
-  GetByIdArgV1 struct {
-      id       int32
-  }
-  GetByIdResultV1 struct {
-      id int32
-      username string
-  }
-)</code></pre></li>
-</ul>
-</li>
-</ul>
-<h4 id="type-API-PUSH-interface"><a href="#type-API-PUSH-interface" class="headerlink" title="type API_PUSH interface"></a>type <strong>API_PUSH</strong> interface</h4><ul>
-<li>push接口自动生成</li>
-<li>push接口即没有返回数据</li>
-<li>规范定义：<pre><code>  type __API_PUSH__ interface {
-  // 订阅推送
-      V1_Subscribe(*V1_SubscribeArg)
-  }
-  type V1_SubscribeArg struct {
-      SessionId string `json:&quot;session_id&quot;` //uid
-      Event     string `json:&quot;event&quot;`      //上下线状态
-  }</code></pre></li>
-</ul>
-<h4 id="type-MYSQL-MODEL-struct"><a href="#type-MYSQL-MODEL-struct" class="headerlink" title="type MYSQL_MODEL struct"></a>type <strong>MYSQL_MODEL</strong> struct</h4><ul>
-<li>mysql自动生成Model文件</li>
-<li><code>key:&quot;pri&quot;</code>表示主键，<code>key:&quot;uni&quot;</code>表示唯一索引</li>
-<li>添加这两个表示，会自动生成相关操作的函数</li>
-<li>规范定义：<pre><code>  type __MYSQL_MODEL__ struct {
-      User
-  }
-  type User struct {
-      Id   int64  `key:&quot;pri&quot;`
-      Username string `key:&quot;uni&quot;`
-  }</code></pre></li>
-</ul>
-<h4 id="type-MONGO-MODEL-struct"><a href="#type-MONGO-MODEL-struct" class="headerlink" title="type MONGO_MODEL struct"></a>type <strong>MONGO_MODEL</strong> struct</h4><ul>
-<li>mongo自动生成Model文件</li>
-<li><code>key:&quot;pri&quot;</code>表示主键，<code>key:&quot;uni&quot;</code>表示唯一索引</li>
-<li>添加这两个表示，会自动生成相关操作的函数</li>
-<li>规范定义：<pre><code>  type __MONGO_MODEL__ struct {
-      UserMeta
-  }
-  type UserMeta struct {
-      Id   int64  `key:&quot;pri&quot;`
-      Username string `key:&quot;uni&quot;`
-  }</code></pre></li>
-</ul>
-<h2 id="三、接口管理"><a href="#三、接口管理" class="headerlink" title="三、接口管理"></a>三、接口管理</h2><h4 id="pull-handler-gen-go"><a href="#pull-handler-gen-go" class="headerlink" title="pull_handler.gen.go"></a>pull_handler.gen.go</h4><ul>
-<li>pull方式接口(即有返回数据)</li>
-<li>功能：将api接口指向实际业务处理</li>
-</ul>
-<h4 id="push-handler-gen-go"><a href="#push-handler-gen-go" class="headerlink" title="push_handler.gen.go"></a>push_handler.gen.go</h4><ul>
-<li>push方式接口(即不需要返回数据)</li>
-<li>功能：将api接口指向实际业务处理</li>
-</ul>
-<h2 id="四、业务层"><a href="#四、业务层" class="headerlink" title="四、业务层"></a>四、业务层</h2><h4 id="tmp-code-gen-go"><a href="#tmp-code-gen-go" class="headerlink" title="tmp_code.gen.go"></a>tmp_code.gen.go</h4><ul>
-<li>模板文件自动生成的接口格式</li>
-<li>操作：复制到分类文件下，并删除或注释改接口</li>
-</ul>
-<h2 id="五、内部客户端"><a href="#五、内部客户端" class="headerlink" title="五、内部客户端"></a>五、内部客户端</h2><h4 id="rpc-gen-go"><a href="#rpc-gen-go" class="headerlink" title="rpc.gen.go"></a>rpc.gen.go</h4><ul>
-<li>根据模板文件自动生成的客户端</li>
-</ul>
-<h4 id="rpc-go"><a href="#rpc-go" class="headerlink" title="rpc.go"></a>rpc.go</h4><ul>
-<li>自定义客户端接口</li>
-<li>如果需要对客户端参数进行修改，复制rpc.gen.go对应的接口，到该文件下进行修改即可</li>
-</ul>
-<h2 id="六、项目初始化"><a href="#六、项目初始化" class="headerlink" title="六、项目初始化"></a>六、项目初始化</h2><h4 id="config-go"><a href="#config-go" class="headerlink" title="config.go"></a>config.go</h4><h5 id="1-type-config-struct"><a href="#1-type-config-struct" class="headerlink" title="1. type config struct"></a>1. type config struct</h5><ul>
-<li>读取配置文件config/config.yaml<pre><code>var cfg = &amp;config{
-  Srv: micro.SrvConfig{
-      ListenAddress:     &quot;:0&quot;,
-      EnableHeartbeat:   true,
-      PrintDetail:       true,
-      CountTime:         true,
-      SlowCometDuration: time.Millisecond * 500,
-  },
-  Etcd: etcd.EasyConfig{
-      Endpoints: []string{&quot;http://127.0.0.1:2379&quot;},
-  },
-  Redis:       *redis.NewConfig(),
-  CacheExpire: time.Hour * 24,
-  LogLevel:    &quot;TRACE&quot;,
-}</code></pre></li>
-</ul>
-<h5 id="2-c-config-Reload-bind-cfgo-BindFunc"><a href="#2-c-config-Reload-bind-cfgo-BindFunc" class="headerlink" title="2. (c *config) Reload(bind cfgo.BindFunc)"></a>2. (c *config) Reload(bind cfgo.BindFunc)</h5><ul>
-<li>执行配置加载</li>
-</ul>
-<h5 id="3-init"><a href="#3-init" class="headerlink" title="3. init()"></a>3. init()</h5><ul>
-<li>初始化配置</li>
-</ul>
-<h2 id="七、Mysql逆向工程"><a href="#七、Mysql逆向工程" class="headerlink" title="七、Mysql逆向工程"></a>七、Mysql逆向工程</h2><ul>
-<li>在数据库中建好数据库数据表，执行以下命令<pre><code>micro tpl -host [ip] -port [3306] -username qas -password [password] -db [DBName] -table [TableName] -ssh_user cds -ssh_host [跳板机地址] -ssh_port 38390</code></pre></li>
-<li>命令执行后，会自动在模板文件中添加数据表结构生成结构，再执行micro gen生成model文件即可</li>
-</ul>
-<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ul>
-<li>接口开发<ol>
-<li>编写模板文件</li>
-<li>调整api</li>
-<li>调整sdk</li>
-<li>logic实际业务逻辑开发</li>
-</ol>
-</li>
-<li>读取配置文件<ol>
-<li>定义配置变量</li>
-<li>config.yaml配置变量内容</li>
-<li>到config.go中读取文件配置，并在Reload赋值到变量</li>
-</ol>
-</li>
-<li>接口插件控制<ol>
-<li>在api中针对接口或接口类添加插件拦截</li>
-<li>如果有需要，在sdk对应接口添加插件例外条件</li>
-</ol>
-</li>
-<li>调用其他项目接口<ol>
-<li>在config.go的Reload注册sdk</li>
-<li>在具体业务位置调用sdk</li>
-</ol>
-</li>
-</ul>
-<h2 id="附加："><a href="#附加：" class="headerlink" title="附加："></a>附加：</h2><h3 id="插件-类似拦截器"><a href="#插件-类似拦截器" class="headerlink" title="插件(类似拦截器)"></a>插件(类似拦截器)</h3>
+
+func (h *Hand) getHand() *Hand {
+    return hands[h.handvalue]
+}
+
+// 如果h胜过了_h,返回true
+func (h *Hand) isStrongerThan(_h *Hand) bool {
+    return h.fight(_h) == 1
+}
+
+// 如果h输给了_h,返回true
+func (h *Hand) isWeakerThan(_h *Hand) bool {
+    return h.fight(_h) == -1
+}
+
+// 计分: 平局0 胜利1 失败-1
+func (h *Hand) fight(_h *Hand) int {
+    if h.handvalue == _h.handvalue {
+        return 0
+    } else if (h.handvalue+1)%3 == _h.handvalue {
+        return 1
+    } else {
+        return -1
+    }
+}
+
+func (h *Hand) toString() string {
+    return names[h.handvalue]
+}
+
+// 猜拳策略的抽闲方法接口
+type Strategy interface {
+    nextHand() *Hand
+    study(win bool)
+}
+
+// 策略： 如果上一局的手赢了，则下一局手势与上局相同。否则，随机出手势
+type WinningStrategy struct {
+    won      bool
+    prevHand *Hand
+}
+
+func NewWinningStrategy() *WinningStrategy {
+    return &amp;WinningStrategy{
+        won:      false,
+        prevHand: nil,
+    }
+}
+
+func (s *WinningStrategy) nextHand() *Hand {
+    if !s.won {
+        rand.Seed(time.Now().UnixNano())
+        hand := NewHand(rand.Intn(3))
+        s.prevHand = hand.getHand()
+    }
+    return s.prevHand
+}
+
+func (s *WinningStrategy) study(win bool) {
+    s.won = win
+}
+
+// 根据过去的胜负来进行概率计算
+type ProbStratege struct {
+    prevHandValue    int
+    currentHandValue int
+    // history[上一局出的手势][这一局所处的手势]
+    history [][]int
+}
+
+func NewProbStratege() *ProbStratege {
+    return &amp;ProbStratege{
+        prevHandValue:    0,
+        currentHandValue: 0,
+        history: [][]int{
+            {1, 1, 1}, // 连续两次出石头胜利次数 | 连续石头、剪刀胜利次数 | 连续石头、布胜利次数
+            {1, 1, 1}, // 连续剪刀、石头胜利次数 | 连续两次剪刀胜利次数 | 连续剪刀、布胜利次数
+            {1, 1, 1}, // 连续布、石头胜利次数 | 连续布、剪刀胜利次数 | 连续两次布胜利次数
+        },
+    }
+}
+
+func (s *ProbStratege) nextHand() *Hand {
+    rand.Seed(time.Now().UnixNano())
+    bet := rand.Intn(s.getSum(s.currentHandValue))
+    handvalue := 0
+    if bet &lt; s.history[s.currentHandValue][0] {
+        handvalue = 0
+    } else if bet &lt; s.history[s.currentHandValue][0]+s.history[s.currentHandValue][1] {
+        handvalue = 1
+    } else {
+        handvalue = 2
+    }
+    s.prevHandValue = s.currentHandValue
+    s.currentHandValue = handvalue
+    hand := NewHand(handvalue)
+    return hand.getHand()
+}
+
+func (s *ProbStratege) study(win bool) {
+    if win {
+        s.history[s.prevHandValue][s.currentHandValue]++
+    } else {
+        s.history[s.prevHandValue][(s.currentHandValue+1)%3]++
+        s.history[s.prevHandValue][(s.currentHandValue+2)%3]++
+    }
+}
+
+func (s *ProbStratege) getSum(hv int) int {
+    sum := 0
+    for i := 0; i &lt; 3; i++ {
+        sum += s.history[hv][i]
+    }
+    return sum
+}
+
+type Player struct {
+    name      string
+    strategy  Strategy
+    winCount  int
+    loseCount int
+    gameCount int
+}
+
+func NewPlayer(name string, strategy Strategy) *Player {
+    return &amp;Player{
+        name:      name,
+        strategy:  strategy,
+        winCount:  0,
+        loseCount: 0,
+        gameCount: 0,
+    }
+}
+
+func (p *Player) nextHand() *Hand {
+    return p.strategy.nextHand()
+}
+
+func (p *Player) win() {
+    p.strategy.study(true)
+    p.gameCount++
+    p.winCount++
+}
+
+func (p *Player) lose() {
+    p.strategy.study(false)
+    p.gameCount++
+    p.loseCount++
+}
+
+func (p *Player) even() {
+    p.gameCount++
+}
+
+func (p *Player) toString() string {
+    return fmt.Sprintf(&quot;[%s:%d games,%d win,%d lose]&quot;, p.name, p.gameCount, p.winCount, p.loseCount)
+}</code></pre>
+<pre><code class="go">package Strategy
+
+import (
+    &quot;fmt&quot;
+    &quot;testing&quot;
+)
+
+func TestName(t *testing.T) {
+    player1 := NewPlayer(&quot;Taro&quot;, NewWinningStrategy())
+    player2 := NewPlayer(&quot;Hana&quot;, NewProbStratege())
+    for i := 0; i &lt; 1000; i++ {
+        nextHand1 := player1.nextHand()
+        nextHand2 := player2.nextHand()
+        if nextHand1.isStrongerThan(nextHand2) {
+            fmt.Println(&quot;Winner:&quot; + player1.toString())
+            player1.win()
+            player2.lose()
+        } else if nextHand2.isStrongerThan(nextHand1) {
+            fmt.Println(&quot;Winner:&quot; + player2.toString())
+            player1.lose()
+            player2.win()
+        } else {
+            //fmt.Println(&quot;Even&quot;)
+            player1.even()
+            player2.even()
+        }
+    }
+    fmt.Println(&quot;Total result:&quot;)
+    fmt.Println(player1.toString())
+    fmt.Println(player2.toString())
+}</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
     </div>
