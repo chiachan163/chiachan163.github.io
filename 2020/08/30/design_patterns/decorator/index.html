@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>go module折腾笔记(tp-micro) | 未来可期</title>
-  <meta name="keywords" content=" golang , tp-micro ">
-  <meta name="description" content="go module折腾笔记(tp-micro) | 未来可期">
+  <title>Decorator模式(装饰器模式) | 未来可期</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="Decorator模式(装饰器模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Chiachan个人信息 学历：本科(统招) 专业：计算机科学与技术 学校：广州航海学院 证书：软件设计师(中级)、NISP一级  技能树   item content    language golang、java   sql mysql、mongodb、redis   mq kafka、rabbitmq   design 常见设计模式   special 数学思路解决复杂数据问题或提高性能效率">
 <meta property="og:type" content="website">
@@ -491,9 +491,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-tp-micro/go module笔记(tp-micro下)" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/decorator" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">go module折腾笔记(tp-micro)</h1>
+        <h1 class="article-title">Decorator模式(装饰器模式)</h1>
     
     <div class="article-meta">
         
@@ -503,9 +503,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="golang">golang</a> > 
-            
-            <a  data-rel="golang&lt;---&gt;tp-micro">tp-micro</a>
+            <a  data-rel="设计模式">设计模式</a>
             
         </span>
         
@@ -513,16 +511,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">golang</a>
-            
-            <a class="color4">tp-micro</a>
+            <a class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:14:51'>2019-12-21 15:13</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-30 03:08:22'>2020-08-30 03:07</time>
         
     </div>
     <div class="article-meta">
@@ -544,7 +540,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#go-module"><span class="toc-text">go module</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、为什么需要依赖管理"><span class="toc-text">一、为什么需要依赖管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、GO111MODULE"><span class="toc-text">二、GO111MODULE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、GOPROXY"><span class="toc-text">三、GOPROXY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、常用的go-mod"><span class="toc-text">四、常用的go mod</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、go-mod文件"><span class="toc-text">五、go.mod文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import"><span class="toc-text">import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#require"><span class="toc-text">require</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-text">replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#indirect"><span class="toc-text">indirect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、下载go-module管理的项目"><span class="toc-text">六、下载go module管理的项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、tp-micro开发新项目"><span class="toc-text">七、tp-micro开发新项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成项目"><span class="toc-text">生成项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决报错"><span class="toc-text">解决报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发过程"><span class="toc-text">开发过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、解决项目间相互依赖"><span class="toc-text">八、解决项目间相互依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九、目前存在且未解决的问题"><span class="toc-text">九、目前存在且未解决的问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是装饰者模式？"><span class="toc-text">什么是装饰者模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -560,112 +556,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="go-module"><a href="#go-module" class="headerlink" title="go module"></a>go module</h2><p>go module是Go1.11版本之后官方推出的版本管理工具，并且从Go1.13版本开始，go module将是Go语言默认的依赖管理工具。</p>
-<h2 id="一、为什么需要依赖管理"><a href="#一、为什么需要依赖管理" class="headerlink" title="一、为什么需要依赖管理"></a>一、为什么需要依赖管理</h2><p>最早的时候，Go所依赖的所有的第三方库都放在GOPATH这个目录下面。这就导致了同一个库只能保存一个版本的代码。如果不同的项目依赖同一个第三方的库的不同版本，应该怎么解决？</p>
-<h2 id="二、GO111MODULE"><a href="#二、GO111MODULE" class="headerlink" title="二、GO111MODULE"></a>二、GO111MODULE</h2><p>要启用go module支持首先要设置环境变量GO111MODULE，通过它可以开启或关闭模块支持，它有三个可选值：off、on、auto，默认值是auto。</p>
-<p>GO111MODULE=off禁用模块支持，编译时会从GOPATH和vendor文件夹中查找包。<br>GO111MODULE=on启用模块支持，编译时会忽略GOPATH和vendor文件夹，只根据 go.mod下载依赖。<br>GO111MODULE=auto，当项目在$GOPATH/src外且项目根目录有go.mod文件时，开启模块支持。<br>简单来说，设置GO111MODULE=on之后就可以使用go module了，以后就没有必要在GOPATH中创建项目了，并且还能够很好的管理项目依赖的第三方包信息。</p>
-<p>使用 go module 管理依赖后会在项目根目录下生成两个文件go.mod和go.sum。</p>
-<h2 id="三、GOPROXY"><a href="#三、GOPROXY" class="headerlink" title="三、GOPROXY"></a>三、GOPROXY</h2><ul>
-<li><p>Go1.11之后设置GOPROXY命令为：</p>
-<pre><code>export GOPROXY=https://goproxy.cn</code></pre></li>
-<li><p>Go1.13之后GOPROXY默认值为<a href="https://proxy.golang.org，在国内是无法访问的，所以十分建议大家设置GOPROXY。" target="_blank" rel="noopener">https://proxy.golang.org，在国内是无法访问的，所以十分建议大家设置GOPROXY。</a></p>
-</li>
-<li><p>这里我推荐使用<a href="https://goproxy.io/" target="_blank" rel="noopener">goproxy.io</a></p>
-<pre><code># 全局设置
-go env -w GOPROXY=https://goproxy.io,direct
-# 按需设置
-export GOPROXY=https://goproxy.io,direct</code></pre></li>
+        <h2 id="什么是装饰者模式？"><a href="#什么是装饰者模式？" class="headerlink" title="什么是装饰者模式？"></a>什么是装饰者模式？</h2><ul>
+<li>装饰者模式即保持装饰者和被装饰者的一致性</li>
+<li>可以不断地为对象添加装饰</li>
+<li>主要目的就是通过添加装饰物来增加类的功能</li>
 </ul>
-<h2 id="四、常用的go-mod"><a href="#四、常用的go-mod" class="headerlink" title="四、常用的go mod"></a>四、常用的go mod</h2><ul>
-<li><p>go mod download #下载依赖的module到本地cache（默认为$GOPATH/pkg/mod目录）</p>
-</li>
-<li><p>go mod edit #编辑go.mod文件</p>
-<ul>
-<li>go mod edit -fmt # 格式化go.mod文件</li>
-<li>go mod edit -require=golang.org/x/text # 添加依赖项</li>
-<li>go mod edit -droprequire=golang.org/x/text # 移除依赖项</li>
-<li>go help mod edit 更多用法</li>
-</ul>
-</li>
-<li><p>go mod graph #打印模块依赖图</p>
-</li>
-<li><p>go mod init #初始化当前文件夹, 创建go.mod文件</p>
-</li>
-<li><p>go mod tidy #增加缺少的module，删除无用的module</p>
-</li>
-<li><p>go mod vendor #将依赖复制到vendor下</p>
-</li>
-<li><p>go mod verify #校验依赖</p>
-</li>
-<li><p>go mod why #解释为什么需要依赖</p>
-</li>
-</ul>
-<h2 id="五、go-mod文件"><a href="#五、go-mod文件" class="headerlink" title="五、go.mod文件"></a>五、go.mod文件</h2><h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><ul>
-<li>如果依赖的项目是go.mod的项目，import指向的地址必须与该项目的go.mod的package一致。</li>
-<li>go.mod的package常常用户版本控制。</li>
-</ul>
-<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><ul>
-<li>require 指向依赖的版本,版本可以是 tag版本,也可以直接指向master</li>
-<li>tag版本号<ul>
-<li>module版本优先使用tag引用,格式必须是以v开头三层版本号，如”v1.0.0”</li>
-</ul>
-</li>
-<li>非tag版本号<ul>
-<li>指向master,格式为v0.0.0-{时间}-{提交哈希值},如v0.0.0-20180417024816-e6c3cc325b21</li>
-</ul>
-</li>
-</ul>
-<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><ul>
-<li>解决依赖项目翻墙问题，如在go.mod中添加下面代码，实际import中，还是使用golang.org/x/net<br><code>replace golang.org/x/net =&gt; github.com/golang/net v0.0.0-20180826012351-8a410e7b638d</code></li>
-<li>将项目依赖指向本地项目，如在go.mod中添加下面代码(可使用绝对路径或相对路径,建议使用相对路径)<br><code>replace gitlab.xxx.xx/xxxx/xxxxxx =&gt; ../xxxxxx</code></li>
-</ul>
-<h3 id="indirect"><a href="#indirect" class="headerlink" title="indirect"></a>indirect</h3><ul>
-<li>indirect 表示间接引用，表示本项目依赖的其中一个或多个项目需要引用到该项目。</li>
-<li>间接引用仅出现在被依赖的项目没有使用go module管理</li>
-</ul>
-<h2 id="六、下载go-module管理的项目"><a href="#六、下载go-module管理的项目" class="headerlink" title="六、下载go module管理的项目"></a>六、下载go module管理的项目</h2><pre><code># 切换到go module项目自动识别模式
-go env -w GO111MODULE=auto
-# 使用goproxy代理,解决墙和下载依赖速度慢的问题
-export GOPROXY=https://goproxy.io,direct
-# 或全局设置
-go env -w GOPROXY=https://goproxy.io,direct
-# 引入私有库
-export GOPRIVATE=gitlab.xxx.xx
-# 或全局设置
-go env -w GOPRIVATE=gitlab.xxx.xx
-# 拉取项目依赖
-go mod download</code></pre><ul>
-<li>使用goland的同学可以升级到2019.03以上版本，并设置下Preference，已经支持了module依赖的代码跳转</li>
-</ul>
-<hr>
-<h2 id="七、tp-micro开发新项目"><a href="#七、tp-micro开发新项目" class="headerlink" title="七、tp-micro开发新项目"></a>七、tp-micro开发新项目</h2><h3 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h3><pre><code># 通过tp-micro生成项目
-micro gen xxx
-# 初始化mod
-go mod init
-# 生成依赖
-go mod tidy
-# 更新.gitignore，添加一行go.sum</code></pre><h3 id="解决报错"><a href="#解决报错" class="headerlink" title="解决报错"></a>解决报错</h3><ul>
-<li>gitlab.xxx.xx/vendor是存放互联网上已经访问不到的项目代码</li>
-<li>gitlab.xxx.xx的项目建议都使用相对路径指向本地目录，否则只会指向依赖项目master当前的代码，之后依赖项目master更新还需要回来更新require<pre><code># 在go.mod添加
-replace (
-      code.google.com/p/xsrftoken =&gt; gitlab.xxx.xx/vendor/xsrftoken v1.0.0
-      github.com/coreos/go-systemd =&gt; github.com/coreos/go-systemd/v22 v22.0.0
-      gitlab.xxx.xx/xxxx/xxxxxx =&gt; ../xxxxxx
-)</code></pre></li>
-</ul>
-<h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
-<li>依赖项目指向的是master。如果master更新需要同步<pre><code># 1. 删除对应的require
-# 2. 执行go mod tidy
-# 3. 检查go.mod中对应服务版本号v0.0.0-{时间}-{最新提交编号}。如v0.0.0-20180417024816-e6c3cc325b21</code></pre></li>
-<li>依赖本地项目<pre><code># 1. 在go.mod 中replace,如gitlab.xxx.xx/xxxx/xxxxxx =&gt; ../xxxxxx
-# 2. 执行go mod tidy
-# 3. 检查go.mod中对应版本号为v0.0.0-00010101000000-000000000000,如果不是的话,删除该行,回到操作2</code></pre></li>
-</ol>
-<hr>
-<h2 id="八、解决项目间相互依赖"><a href="#八、解决项目间相互依赖" class="headerlink" title="八、解决项目间相互依赖"></a>八、解决项目间相互依赖</h2><p>本地项目依赖的项目，在本项目go.mod中，用replace将本项目指向本地路径即可</p>
-<h2 id="九、目前存在且未解决的问题"><a href="#九、目前存在且未解决的问题" class="headerlink" title="九、目前存在且未解决的问题"></a>九、目前存在且未解决的问题</h2><ol>
-<li>如果依赖本地项目,需要先手动把本地代码下拉完整</li>
-</ol>
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><p>计算函数运行时间</p>
+<pre><code class="go">package Decorator
+
+import (
+    &quot;log&quot;
+    &quot;math&quot;
+    &quot;time&quot;
+)
+
+type FuncPi func(n int) float64
+
+// 装饰器 计算函数运行时间
+func WrapLogger(funcPi FuncPi, logger *log.Logger) FuncPi {
+    return func(n int) float64 {
+        fn := func(n int) (result float64) {
+            defer func(t time.Time) {
+                logger.Printf(&quot;took=%v,n=%v,result=%v&quot;, time.Since(t), n, result)
+            }(time.Now())
+            return funcPi(n)
+        }
+        return fn(n)
+    }
+}
+
+func CalculatePI(n int) float64 {
+    ch := make(chan float64)
+    for k := 0; k &lt; n; k++ {
+        go func(ch chan float64, k float64) {
+            ch &lt;- 4 * math.Pow(-1, k) / (2*k + 1)
+        }(ch, float64(k))
+    }
+    result := 0.0
+    for i := 0; i &lt; n; i++ {
+        result += &lt;-ch
+    }
+    return result
+}
+</code></pre>
+<pre><code class="go">package Decorator
+
+import (
+    &quot;log&quot;
+    &quot;os&quot;
+    &quot;testing&quot;
+)
+
+func TestWrapLogger(t *testing.T) {
+    logger := log.New(os.Stdout, &quot;test &quot;, 1)
+    f := WrapLogger(CalculatePI, logger)
+    f(5000)
+    f(10000)
+    f(100000)
+    f(1000000)
+}
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
