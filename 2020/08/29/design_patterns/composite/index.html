@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Builder模式(建造者模式) | 未来可期</title>
+  <title>Composite模式(组合模式) | 未来可期</title>
   <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="Builder模式(建造者模式) | 未来可期">
+  <meta name="description" content="Composite模式(组合模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="什么是组合模式？ 组合模式即使容器和内容具有一致性，从而构建递归结构 将容器和内容当做同一种对象对待  示范代码(golang)系统文件目录 package Composite  import &quot;fmt&quot;  &#x2F;&#x2F; 一致性结构 type Entry interface {     getName() string     getSize() int     printList(p">
 <meta property="og:type" content="article">
@@ -483,9 +483,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-design_patterns/builder" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/composite" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Builder模式(建造者模式)</h1>
+        <h1 class="article-title">Composite模式(组合模式)</h1>
     
     <div class="article-meta">
         
@@ -510,7 +510,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-24 23:38:48'>2020-08-24 23:38</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-29 16:35:46'>2020-08-29 16:35</time>
         
     </div>
     <div class="article-meta">
@@ -532,7 +532,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是建造者模式？"><span class="toc-text">什么是建造者模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是组合模式？"><span class="toc-text">什么是组合模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -548,69 +548,123 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是建造者模式？"><a href="#什么是建造者模式？" class="headerlink" title="什么是建造者模式？"></a>什么是建造者模式？</h2><ul>
-<li>建造者模式即组装复杂的实例</li>
-<li>时刻关注可替换性</li>
+        <h2 id="什么是组合模式？"><a href="#什么是组合模式？" class="headerlink" title="什么是组合模式？"></a>什么是组合模式？</h2><ul>
+<li>组合模式即使容器和内容具有一致性，从而构建递归结构</li>
+<li>将容器和内容当做同一种对象对待</li>
 </ul>
-<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><pre><code class="go">package Builder
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><p>系统文件目录</p>
+<pre><code class="go">package Composite
 
-// 建造者
-type Builder interface {
-    builderPart1()
-    builderPart2()
-    builderPart3()
-}
+import &quot;fmt&quot;
 
-// 建工
-type Director struct {
-    builder Builder
+// 一致性结构
+type Entry interface {
+    getName() string
+    getSize() int
+    printList(prefix string)
 }
 
-func NewDirector(builder Builder) Director {
-    return Director{builder: builder}
+// 文件
+type File struct {
+    name string
+    size int
 }
 
-func (d *Director) construct() {
-    d.builder.builderPart1()
-    d.builder.builderPart2()
-    d.builder.builderPart3()
+func NewFile(name string, size int) *File {
+    return &amp;File{
+        name: name,
+        size: size,
+    }
 }
 
-// 具体的建造者
-type ConcreteBuilder struct {
-    index int64
+func (f *File) getName() string {
+    return f.name
 }
 
-func NewConcreteBuilder() *ConcreteBuilder {
-    return &amp;ConcreteBuilder{index: 0}
+func (f *File) getSize() int {
+    return f.size
 }
 
-func (c *ConcreteBuilder) builderPart1() {
-    c.index = c.index + 1
+func (f *File) printList(prefix string) {
+    fmt.Printf(&quot;%s/%s\n&quot;, prefix, f.toString())
 }
-func (c *ConcreteBuilder) builderPart2() {
-    c.index = c.index + 2
+
+func (f *File) toString() string {
+    return fmt.Sprintf(&quot;%s (%d)&quot;, f.getName(), f.getSize())
 }
-func (c *ConcreteBuilder) builderPart3() {
-    c.index = c.index + 3
+
+// 文件夹
+type Directory struct {
+    name   string
+    Entrys []Entry
 }
-func (c *ConcreteBuilder) getResult() int64 {
-    return c.index
+
+func NewDirectory(name string) *Directory {
+    return &amp;Directory{
+        name: name,
+    }
+}
+func (d *Directory) getName() string {
+    return d.name
+}
+
+func (d *Directory) getSize() int {
+    sum := 0
+    for _, e := range d.Entrys {
+        sum += e.getSize()
+    }
+    return sum
+}
+
+func (d *Directory) add(entry Entry) {
+    d.Entrys = append(d.Entrys, entry)
+}
+
+func (d *Directory) printList(prefix string) {
+    fmt.Printf(&quot;%s/%s\n&quot;, prefix, d.toString())
+    for _, e := range d.Entrys {
+        e.printList(fmt.Sprintf(&quot;%s/%s&quot;, prefix, d.name))
+    }
+}
+
+func (d *Directory) toString() string {
+    return fmt.Sprintf(&quot;%s (%d)&quot;, d.getName(), d.getSize())
 }</code></pre>
-<pre><code class="go">package Builder
+<pre><code class="go">package Composite
 
 import (
     &quot;fmt&quot;
     &quot;testing&quot;
 )
 
-func TestNewConcreteBuilder(t *testing.T) {
-    concreteBuilder := NewConcreteBuilder()
-    director := NewDirector(concreteBuilder)
-    director.construct()
-    fmt.Println(concreteBuilder.getResult())
-}
-</code></pre>
+func TestEntry_PrintList(t *testing.T) {
+    fmt.Println(&quot;Making root entries...&quot;)
+    rootdir := NewDirectory(&quot;root&quot;)
+    bindir := NewDirectory(&quot;bin&quot;)
+    tmpdir := NewDirectory(&quot;tmp&quot;)
+    usrdir := NewDirectory(&quot;usr&quot;)
+    rootdir.add(bindir)
+    rootdir.add(tmpdir)
+    rootdir.add(usrdir)
+    bindir.add(NewFile(&quot;vi&quot;, 10000))
+    bindir.add(NewFile(&quot;latex&quot;, 20000))
+    rootdir.printList(&quot;&quot;)
+
+    fmt.Println(&quot;&quot;)
+    fmt.Println(&quot;Making user entries...&quot;)
+    yuki := NewDirectory(&quot;yuki&quot;)
+    hanako := NewDirectory(&quot;hanako&quot;)
+    tomura := NewDirectory(&quot;tomura&quot;)
+    usrdir.add(yuki)
+    usrdir.add(hanako)
+    usrdir.add(tomura)
+    yuki.add(NewFile(&quot;index.html&quot;, 100))
+    yuki.add(NewFile(&quot;Composite.md&quot;, 200))
+    hanako.add(NewFile(&quot;flag.text&quot;, 300))
+    tomura.add(NewFile(&quot;game.exe&quot;, 400))
+    tomura.add(NewFile(&quot;README.md&quot;, 500))
+    rootdir.printList(&quot;&quot;)
+}</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
