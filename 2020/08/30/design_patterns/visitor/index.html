@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>go-micro命令 | 未来可期</title>
-  <meta name="keywords" content=" golang , go-micro ">
-  <meta name="description" content="go-micro命令 | 未来可期">
+  <title>Visitor模式(访问者模式) | 未来可期</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="Visitor模式(访问者模式) | 未来可期">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Chiachan个人信息 学历：本科(统招) 专业：计算机科学与技术 学校：广州航海学院 证书：软件设计师(中级)、NISP一级  技能树   item content    language golang、java   sql mysql、mongodb、redis   mq kafka、rabbitmq   design 常见设计模式   special 数学思路解决复杂数据问题或提高性能效率">
 <meta property="og:type" content="website">
@@ -499,9 +499,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-go-micro/go-micro命令翻译" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-design_patterns/visitor" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">go-micro命令</h1>
+        <h1 class="article-title">Visitor模式(访问者模式)</h1>
     
     <div class="article-meta">
         
@@ -511,9 +511,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="golang">golang</a> > 
-            
-            <a  data-rel="golang&lt;---&gt;go-micro">go-micro</a>
+            <a  data-rel="设计模式">设计模式</a>
             
         </span>
         
@@ -521,16 +519,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">golang</a>
-            
-            <a class="color4">go-micro</a>
+            <a class="color5">设计模式</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-08-06 19:15:35'>2020-08-03 01:15</time>
+            发布时间 : <time class="date" title='最后更新: 2020-08-30 21:32:24'>2020-08-30 21:31</time>
         
     </div>
     <div class="article-meta">
@@ -552,7 +548,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#go-micro命令-中文翻译"><span class="toc-text">go-micro命令(中文翻译)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是访问者模式"><span class="toc-text">什么是访问者模式?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#示范代码-golang"><span class="toc-text">示范代码(golang)</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -568,11 +564,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="go-micro命令-中文翻译"><a href="#go-micro命令-中文翻译" class="headerlink" title="go-micro命令(中文翻译)"></a>go-micro命令(中文翻译)</h1><p>项目名字:<br>   micro - A microservice runtime</p>
-<p>使用命令:<br>   micro [global options] command [command options] [arguments…]</p>
-<p>版本:<br>   v2.9.1</p>
-<p>命令:<br>   api         运行api网关<br>   auth        auth运行auth服务<br>   login       使用token登录<br>   whoami      登录帐户信息<br>   bot         运行chatops bot<br>   cli         运行交互式CLI<br>   call        调用服务，例如微调用greeter Say.Hello’{“ name”：“ John” }<br>   stream      创建服务流<br>   publish     将消息发布到topic<br>   stats       查询服务的统计信息<br>   env         获取/设置Micro cli环境<br>   file        在本地计算机和服务器间移动文件<br>   list        列出注册表或网络中的项目<br>   register    将一个项目注册到注册表<br>   deregister  从注册表中注销一个项目<br>   get         从注册表中获取一个项目<br>   broker      消息代理运行<br>   health      检查服务健康状态<br>   proxy       运行服务代理<br>   router      执行网络路由<br>   tunnel      执行网络隧道<br>   network     执行网络节点<br>   registry    运行服务注册表<br>   runtime     运行runtime<br>   run         Required usage: micro run [source]<br>   kill        Require usage: micro kill [source]<br>   update      Require usage: micro update [source]<br>   services    Require usage: micro services<br>   status      Require usage: micro status [service] [version]<br>   logs        获取一个服务的日志<br>   debug       运行调试服务<br>   trace       跟踪服务<br>   server      运行服务<br>   service     运行微服务<br>   store       运行微商店服务<br>   new         创建服务模板<br>   plugin      插件命令<br>   web         运行Web仪表板<br>   config      管理配置值<br>   init        初始化操作<br>   help, h     显示命令列表或一个命令的帮助</p>
-<p>GLOBAL OPTIONS:<br>   –client value                       go-micro客户端; rpc [$MICRO_CLIENT]<br>   –client_request_timeout value       设置客户端请求超时。例如 500ms, 5s, 1m. Default: 5s [$MICRO_CLIENT_REQUEST_TIMEOUT]<br>   –client_retries value               设置客户端重试次数。 默认值：1(default: 1) [$MICRO_CLIENT_RETRIES]<br>   –client_pool_size value             设置客户端连接池大小。默认值：1 (default: 0) [$MICRO_CLIENT_POOL_SIZE]<br>   –client_pool_ttl value              设置客户端连接池ttl。例如500ms, 5s, 1m. 默认值: 1m [$MICRO_CLIENT_POOL_TTL]<br>   –register_ttl value                 以秒为单位注册TTL (default: 60) [$MICRO_REGISTER_TTL]<br>   –register_interval value            以秒为单位的注册间隔 (default: 30) [$MICRO_REGISTER_INTERVAL]<br>   –server value                       go-micro服务端; rpc [$MICRO_SERVER]<br>   –server_name value                  服务名. go.micro.srv.example [$MICRO_SERVER_NAME]<br>   –server_version value               服务版本. 1.1.0 [$MICRO_SERVER_VERSION]<br>   –server_id value                    服务server_id。如果未指定，则自动生成 [$MICRO_SERVER_ID]<br>   –server_address value               服务绑定地址。默认：127.0.0.1:8080 [$MICRO_SERVER_ADDRESS]<br>   –server_advertise value             服务发现注册时，代替server_address使用 127.0.0.1:8080 [$MICRO_SERVER_ADVERTISE]<br>   –server_metadata value              定义元数据的键值对的列表。 version=1.0.0 [$MICRO_SERVER_METADATA]<br>   –broker value                       代理发布/订阅。可选 http, nats, rabbitmq [$MICRO_BROKER]<br>   –broker_address value               逗号分隔的代理地址列表 [$MICRO_BROKER_ADDRESS]<br>   –profile value                      用于cpu和内存统计信息的调试分析器 [$MICRO_DEBUG_PROFILE]<br>   –registry value                     用于发现的注册表。可选 etcd, mdns [$MICRO_REGISTRY]<br>   –registry_address value             逗号分隔的注册表地址列表 [$MICRO_REGISTRY_ADDRESS]<br>   –runtime value                      用于构建和运行服务的runtime。例如 local, kubernetes (default: “local”) [$MICRO_RUNTIME]<br>   –runtime_source value               用于构建和运行服务的运行时源。例如 github.com/micro/service (default: “github.com/micro/services”) [$MICRO_RUNTIME_SOURCE]<br>   –selector value                     选择器，用于选择要查询的节点 [$MICRO_SELECTOR]<br>   –store value                        用于键值存储的商店 [$MICRO_STORE]<br>   –store_address value                逗号分隔的商店地址列表 [$MICRO_STORE_ADDRESS]<br>   –store_database value               基础商店的数据库选项 [$MICRO_STORE_DATABASE]<br>   –store_table value                  基础商店的表选项 [$MICRO_STORE_TABLE]<br>   –transport value                    所使用的传输机制; http [$MICRO_TRANSPORT]<br>   –transport_address value            以逗号分隔的传输地址列表 [$MICRO_TRANSPORT_ADDRESS]<br>   –tracer value                       用于分布式跟踪的跟踪器，例如 memory, jaeger [$MICRO_TRACER]<br>   –tracer_address value               以逗号分隔的跟踪器地址列表 [$MICRO_TRACER_ADDRESS]<br>   –auth value                         角色的身份验证基于访问控制，例如 service [$MICRO_AUTH]<br>   –auth_id value                      用于客户端身份验证的帐户ID [$MICRO_AUTH_ID]<br>   –auth_secret value                  用于客户端身份验证的帐户密码 [$MICRO_AUTH_SECRET]<br>   –auth_namespace value               服务auth帐户的命名空间 (default: “go.micro”) [$MICRO_AUTH_NAMESPACE]<br>   –auth_public_key value              用于JWT auth的公共密钥（以base64编码的PEM） [$MICRO_AUTH_PUBLIC_KEY]<br>   –auth_private_key value             用于JWT auth的私钥（以base64编码的PEM） [$MICRO_AUTH_PRIVATE_KEY]<br>   –auth_provider value                用于登录用户的身份验证提供者 [$MICRO_AUTH_PROVIDER]<br>   –auth_provider_client_id value      用于oauth的客户端ID [$MICRO_AUTH_PROVIDER_CLIENT_ID]<br>   –auth_provider_client_secret value  用于oauth的客户端密钥 [$MICRO_AUTH_PROVIDER_CLIENT_SECRET]<br>   –auth_provider_endpoint value       用于oauth的enpoint  [$MICRO_AUTH_PROVIDER_ENDPOINT]<br>   –auth_provider_redirect value       用于oauth的重定向 [$MICRO_AUTH_PROVIDER_REDIRECT]<br>   –auth_provider_scope value          用于oauth的范围 [$MICRO_AUTH_PROVIDER_SCOPE]<br>   –config value                       用于获取配置的配置源 [$MICRO_CONFIG]<br>   –local                              仅本地开发，默认是true. (default: false)<br>   –enable_acme                        通过“让我们加密”启用ACME支持。还应指定ACME主机。(default: false) [$MICRO_ENABLE_ACME]<br>   –acme_hosts value                   以逗号分隔的用于管理ACME证书的主机名列表 [$MICRO_ACME_HOSTS]<br>   –acme_provider value                用于与Let’s Encrypt通信的提供程序。有效选项：autocert, certmagic [$MICRO_ACME_PROVIDER]<br>   –enable_tls                         启用TLS支持。需要指定证书和密钥文件 (default: false) [$MICRO_ENABLE_TLS]<br>   –tls_cert_file value                TLS证书文件的路径 [$MICRO_TLS_CERT_FILE]<br>   –tls_key_file value                 TLS密钥文件的路径 [$MICRO_TLS_KEY_FILE]<br>   –tls_client_ca_file value           用于验证客户端的CA文件的TLS的路径 [$MICRO_TLS_CLIENT_CA_FILE]<br>   –api_address value                  设置api地址。例如 0.0.0.0:8080 [$MICRO_API_ADDRESS]<br>   –namespace value                    设置微服务名称空间 (default: “micro”) [$MICRO_NAMESPACE]<br>   –proxy_address value                通过指定的HTTP地址进行代理请求 [$MICRO_PROXY_ADDRESS]<br>   –web_address value                  设置Web UI地址，例如 0.0.0.0:8082 [$MICRO_WEB_ADDRESS]<br>   –network value                      设置网络名称： local, go.micro [$MICRO_NETWORK]<br>   –network_address value              设置微网络地址。例如 :9093 [$MICRO_NETWORK_ADDRESS]<br>   –router_address value               设置路由地址，例如 :8084 [$MICRO_ROUTER_ADDRESS]<br>   –gateway_address value              设置微型默认网关地址，例如 :9094 [$MICRO_GATEWAY_ADDRESS]<br>   –tunnel_address value               设置隧道地址，例如 :8083 [$MICRO_TUNNEL_ADDRESS]<br>   –api_handler value                  指定用于将HTTP请求映射到服务的请求处理程序; {api, proxy, rpc} [$MICRO_API_HANDLER]<br>   –api_namespace value                设置API使用的名称空间，例如 com.example.api [$MICRO_API_NAMESPACE]<br>   –web_namespace value                设置Web代理使用的名称空间，例如 com.example.web [$MICRO_WEB_NAMESPACE]<br>   –web_url value                      设置用于Web仪表板的主机，例如 web.example.com [$MICRO_WEB_HOST]<br>   –enable_stats                       启用统计信息 (default: false) [$MICRO_ENABLE_STATS]<br>   –auto_update                        启用自动更新 (default: false) [$MICRO_AUTO_UPDATE]<br>   –update_url value                   设置从以下的URL来检索系统更新 (default: “<a href="https://go.micro.mu/update&quot;" target="_blank" rel="noopener">https://go.micro.mu/update&quot;</a>) [$MICRO_UPDATE_URL]<br>   –report_usage                       报告使用情况统计信息 (default: true) [$MICRO_REPORT_USAGE]<br>   –env value, -e value                覆盖环境 [$MICRO_ENV]<br>   –plugin value                       逗号分隔的插件列表，例如broker/rabbitmq, registry/etcd, micro/basic_auth, /path/to/plugin.so [$MICRO_PLUGIN]<br>   –help, -h                           帮助 (default: false)<br>   –version                            打印版本 (default: false)</p>
+        <h1 id="什么是访问者模式"><a href="#什么是访问者模式" class="headerlink" title="什么是访问者模式?"></a>什么是访问者模式?</h1><ul>
+<li>访问者模式即访问数据结构并处理数据</li>
+</ul>
+<h2 id="示范代码-golang"><a href="#示范代码-golang" class="headerlink" title="示范代码(golang)"></a>示范代码(golang)</h2><p>元素接受不同访问者访问</p>
+<pre><code class="go">package Visitor
+
+import &quot;fmt&quot;
+
+// 访问者
+type Visitor interface {
+    visit()
+}
+
+type UserVisitor struct {
+    name string
+}
+
+func NewUserVisitor(name string) *UserVisitor {
+    return &amp;UserVisitor{name: name}
+}
+func (v *UserVisitor) visit() {
+    fmt.Printf(&quot;用户%s前来访问&quot;, v.name)
+}
+
+type AdminVisitor struct {
+    name string
+}
+
+func NewAdminVisitor(name string) *AdminVisitor {
+    return &amp;AdminVisitor{name: name}
+}
+func (v *AdminVisitor) visit() {
+    fmt.Printf(&quot;管理员%s前来访问&quot;, v.name)
+}
+
+// 被访问元素
+type Element interface {
+    accept(visitor Visitor)
+}
+
+type ConreteElement struct {
+}
+
+func (e *ConreteElement) accept(visitor Visitor) {
+    visitor.visit()
+    fmt.Println()
+}</code></pre>
+<pre><code class="go">package Visitor
+
+import &quot;testing&quot;
+
+func TestElement_accept(t *testing.T) {
+    e := new(ConreteElement)
+    e.accept(NewUserVisitor(&quot;user1&quot;))
+    e.accept(NewAdminVisitor(&quot;admin1&quot;))
+}
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 chiachan@163.com </span>
